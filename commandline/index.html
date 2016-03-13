@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="../css/layouts/side-menu.css">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div id="layout">
+    
+    <a href="#menu" id="menuLink" class="menu-link">
+        
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading" href="">Ontologizer</a>
+
+            <ul class="pure-menu-list">
+                
+                    
+                    <li class="pure-menu-item"><a href="../intro/" class="pure-menu-link">Introduction</a></li>
+                    
+                
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../howto/" class="pure-menu-link">How To</a></li>
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../commandline/" class="pure-menu-link">Command Line</a></li>
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../impressum/" class="pure-menu-link">Impressum</a></li>
+                    
+                
+
+
+            </ul>
+        </div>
+    </div>
+
+
+<div id="main">
+
+    <div class="header">
+        <h1>Command Line</h1>
+        
+    </div>
+
+    <div class="content">
+        
+
+<p>The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though.</p>
+
+<p>First of all, you need to download the .jar file. A current version can be obtained from <a href="https://github.com/charite/charite.github.io/tree/master/media/ontologizer">from here</a>.</p>
+
+<p>Ontologizer is a Java-Application and needs to be started via the &lsquo;java&rsquo; command and be invoked with a plenty of arguments. All possible command arguments can be viewed via the &ndash;help argument. E.g. java -jar Ontologizer.jar &ndash;help. Here is a full list of options:</p>
+
+<pre><code>Short Option    Long Option    Explanation
+-m    --mtc    Specifies the MTC method to use. Possible values are: &quot;Bonferroni&quot; (default), &quot;None&quot;, &quot;Westfall-Young-Single-Step&quot;
+-c    --calculation    Specifies the calculation method to use. Possible values are: &quot;Parent-Child-Union&quot;, &quot;Parent-Child-Intersection&quot;, &quot;Term-For-Term&quot; (default). For a full list, consult the output of the -h option.
+-a    --association    File containing associations from genes to GO terms. Required
+-d    --dot    For every studyset analysis write out an additional .dot file (GraphViz) containing the GOTerm graph with significant nodes. The optional argument in range between 0 and 0.5 specifies the maximum level on which a term is considered as significantly enriched. By appending a GO Term identifier (separated by a comma) the output is restriced to the subgraph originating at this GO Term.
+-f    --filter    Filter the gene names by appling rules in a given file (currently only mapping supported).
+-g    --go    Path to gene_ontology_edit.obo file (Required)
+-h    --help    Shows this help
+-i    --ignore    Ignore genes to which no association exist within the calculation.
+-n    --annotation    Create an additional file per study set which contains the annotations.
+-o    --outdir    Specfies the directory in which the results will be placed.
+-p    --population    File containing genes within the population. Required
+-r    --resamplingsteps    Specifies the number of steps used in resampling based MTCs
+-s    --studyset    File of the study set or a directory containing study set files. Required
+-v    --version    Shows version information and exits
+</code></pre>
+
+<p>In order to do something useful, Ontologizer must be started with several arguments (as indicated with &ldquo;Required&rdquo; within the output above).</p>
+
+<p>First, you are required to specify the -g (or &ndash;go) option. This defines the path to a file which contains the GO terminology and structure. Ontologizer is able to parse files in the OBO format. Such are available directly at the GO Website.</p>
+
+<p>Second, you are required to specify the -a option which defines the mapping of gene names to GO terms. The GO Website provides association files for a variety of organisms, as well.</p>
+
+<p>Third, you must specify a population file with the -p option. This file contains all gene names (one per line) of the population set, e.g. the names of the genes of your microarray.</p>
+
+<p>Last, you need to specify the path to your study set(s) with the -s option.. This can eighter be a single file for a single study set or a directory, in which case all files (ending with *.txt) are considered as separate study sets. As for the population file, one line represents only a single gene name.</p>
+
+<p>When started with these four parameters only, the output of Ontologizer&rsquo;s calculation is written to a basic ascii table file into the same directory where the study files are located. The table&rsquo;s filename is derived from the name of the study set in question but prepended with &ldquo;table-&rdquo; string.</p>
+
+<p>Using the -d option, you can instruct Ontologizer to create a graphical output of the results. For every study set, a file (name is prepended with &ldquo;view-&rdquo;) is written which can be read by the graphviz &lsquo;dot&rsquo; tool to produce a viewable graphics file. In this file, terms are depicted by nodes and their hierachical relations are depicted by edges. Because the GO DAG contains a huge amount of terms, the graph is constructed only for signifant terms and their predecessors (up to the source) and those significant terms are highligthed. Which terms are considered as significant is influenced by their p-values and the significance threshold. This threshold is specified as a parameter to the -d argument. It must be a valid floating point value ranging from 0 to 0.5. For example use &ldquo;-d 0.05&rdquo; to define those terms as significant whose p-value falls below 0.05.</p>
+
+<p>In addition, you can specify a GO Term ID, after the floating-point value (separated by &ldquo;,&rdquo;). In this case only the subgraph starting at this term is written. For example use &ldquo;-d 0.05,8152&rdquo; to get only a graph with the term id GO:0008152 (metabolism) and its successors within the subgraph emanating from GO:0008152 such that all significantly overrepresented terms are included in the graph.</p>
+
+<p>Some sample datasets and population sets can be downloaded from this page.
+To perform parent-child analysis using Westphal-Young MTC on the Yeast data set from the tutorial page and display the results using dot, enter the following command:</p>
+
+<pre><code>java -jar Ontologizer.jar -a gene_association.sgd -g gene_ontology.obo -s study/4hourSMinduced.txt -p population.txt -c Parent-Child-Union -m Westfall-Young-Single-Step -d 0.05 -r 1000
+</code></pre>
+
+<p>The corresponding files must be in the current directory (or their full path must be indicated). To create a PNG image with the result, enter</p>
+
+<pre><code>dot -Tpng view-4hourSMinduced-Parent-Child-Westfall-Young-Single-Step.dot -oExample.png
+</code></pre>
+
+<p>The corresponding graphic should look something like this:
+<img src="../images/Example.png" alt="Dot Example" /></p>
+
+<h2 id="obtaining-graphviz:89dc0b89bd17fa3b3b6dcf3a7dd09dc1">Obtaining Graphviz</h2>
+
+<p>Graphviz is a Open Source project which provides tools for layouting and depicting graphs. Hereby, graph references to mathematical entities which consists of nodes and edges.</p>
+
+<p>A installed Graphviz system is a requirement for Ontologizer&rsquo;s facility to visualize the results of an enrichment analysis. More precisely, the tool named dot is invoked which performs the layouting step of the graph.</p>
+
+<p>Windows users can obtain the installation package of Graphviz following the Download link of www.graphviz.org. On this site, you also can find the latest source packages which can be used, for instance by Linux, users to compile the package. Linux Distributions such as Debian provide binary packages for Graphviz as well. This allows a straithforward installation of Graphviz.</p>
+
+<p>Note that in general, the standard installtion (of the Windows and Linux installation) is perfectly suited for Ontologizer. If however, for any reason, the dot exectutable is not in the command path, you have to tell Ontologizer explicitly where this command can be found by entering the full path within the Preferences window, which can be obtained via the Window &gt; Preferences&hellip;. menu entry.</p>
+
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="../js/ui.js"></script>
+
+</body>
+</html>
+
