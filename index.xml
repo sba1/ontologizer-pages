@@ -300,7 +300,7 @@ write.table&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;mapping&lt;s
 
 &lt;p&gt;The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though.&lt;/p&gt;
 
-&lt;p&gt;First of all, you need to download the .jar file. A current version can be obtained from &lt;a href=&#34;https://github.com/charite/charite.github.io/tree/master/media/ontologizer&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First of all, you need to download the .jar file. A current version can be obtained from &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Ontologizer is a Java-Application and needs to be started via the &amp;lsquo;java&amp;rsquo; command and be invoked with a plenty of arguments. All possible command arguments can be viewed via the &amp;ndash;help argument. E.g. java -jar Ontologizer.jar &amp;ndash;help. Here is a full list of options:&lt;/p&gt;
 
