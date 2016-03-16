@@ -298,49 +298,89 @@ write.table&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;mapping&lt;s
       <guid>/commandline/</guid>
       <description>
 
-&lt;p&gt;The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though.&lt;/p&gt;
+&lt;p&gt;The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though. But if you want to use the command-line version, you need to download
+the &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt; file first.&lt;/p&gt;
 
-&lt;p&gt;First of all, you need to download the .jar file. A current version can be obtained from &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;from here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;help:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Help&lt;/h2&gt;
 
-&lt;p&gt;Ontologizer is a Java-Application and needs to be started via the &amp;lsquo;java&amp;rsquo; command and be invoked with a plenty of arguments. All possible command arguments can be viewed via the &amp;ndash;help argument. E.g. java -jar Ontologizer.jar &amp;ndash;help. Here is a full list of options:&lt;/p&gt;
+&lt;p&gt;Ontologizer is a Java-Application and needs to be started via the &lt;code&gt;java&lt;/code&gt; command and be invoked with a plenty of arguments. All possible command arguments along with a short description can be viewed via the &lt;code&gt;--help&lt;/code&gt; argument. E.g.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Short Option    Long Option    Explanation
--m    --mtc    Specifies the MTC method to use. Possible values are: &amp;quot;Bonferroni&amp;quot; (default), &amp;quot;None&amp;quot;, &amp;quot;Westfall-Young-Single-Step&amp;quot;
--c    --calculation    Specifies the calculation method to use. Possible values are: &amp;quot;Parent-Child-Union&amp;quot;, &amp;quot;Parent-Child-Intersection&amp;quot;, &amp;quot;Term-For-Term&amp;quot; (default). For a full list, consult the output of the -h option.
--a    --association    File containing associations from genes to GO terms. Required
--d    --dot    For every studyset analysis write out an additional .dot file (GraphViz) containing the GOTerm graph with significant nodes. The optional argument in range between 0 and 0.5 specifies the maximum level on which a term is considered as significantly enriched. By appending a GO Term identifier (separated by a comma) the output is restriced to the subgraph originating at this GO Term.
--f    --filter    Filter the gene names by appling rules in a given file (currently only mapping supported).
--g    --go    Path to gene_ontology_edit.obo file (Required)
--h    --help    Shows this help
--i    --ignore    Ignore genes to which no association exist within the calculation.
--n    --annotation    Create an additional file per study set which contains the annotations.
--o    --outdir    Specfies the directory in which the results will be placed.
--p    --population    File containing genes within the population. Required
--r    --resamplingsteps    Specifies the number of steps used in resampling based MTCs
--s    --studyset    File of the study set or a directory containing study set files. Required
--v    --version    Shows version information and exits
+&lt;pre&gt;&lt;code&gt;$ java -jar Ontologizer.jar --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;will produce following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: java -jar Ontologizer.jar [-a &amp;lt;arg&amp;gt;] [-c &amp;lt;arg&amp;gt;] [-d &amp;lt;arg&amp;gt;] [-f &amp;lt;arg&amp;gt;] [-g
+       &amp;lt;arg&amp;gt;] [-h] [-i] [-m &amp;lt;arg&amp;gt;] [-n] [-o &amp;lt;arg&amp;gt;] [-p &amp;lt;arg&amp;gt;] [-r &amp;lt;arg&amp;gt;] [-s
+       &amp;lt;arg&amp;gt;] [-t &amp;lt;arg&amp;gt;] [-v]
+Analyze High-Throughput Biological Data Using Gene Ontology
+ -a,--association &amp;lt;arg&amp;gt;       File containing associations from genes to GO
+                              terms. Required
+ -c,--calculation &amp;lt;arg&amp;gt;       Specifies the calculation method to use. Possible
+                              values are: &amp;quot;MGSA&amp;quot;, &amp;quot;Parent-Child-Intersection&amp;quot;,
+                              &amp;quot;Parent-Child-Union&amp;quot; (default), &amp;quot;Term-For-Term&amp;quot;,
+                              &amp;quot;Topology-Elim&amp;quot;, &amp;quot;Topology-Weighted&amp;quot;
+ -d,--dot &amp;lt;arg&amp;gt;               For every study set analysis write out an
+                              additional .dot file (GraphViz) containing the
+                              graph that is induced by interesting nodes. The
+                              optional argument in range between 0 and 1
+                              specifies the threshold used to identify
+                              interesting nodes. By appending a GO Term
+                              identifier (separated by a comma) the output is
+                              restriced to the subgraph originating at this GO
+                              term.
+ -f,--filter &amp;lt;arg&amp;gt;            Filter the gene names by appling rules in a given
+                              file (currently only mapping supported).
+ -g,--go &amp;lt;arg&amp;gt;                File containig GO terminology and structure (.obo
+                              format). Required
+ -h,--help                    Shows this help
+ -i,--ignore                  Ignore genes to which no association exist within
+                              the calculation.
+ -m,--mtc &amp;lt;arg&amp;gt;               Specifies the MTC method to use. Possible values
+                              are: &amp;quot;Benjamini-Hochberg&amp;quot;, &amp;quot;Benjamini-Yekutieli&amp;quot;,
+                              &amp;quot;Bonferroni&amp;quot;, &amp;quot;Bonferroni-Holm&amp;quot;, &amp;quot;None&amp;quot; (default),
+                              &amp;quot;Westfall-Young-Single-Step&amp;quot;,
+                              &amp;quot;Westfall-Young-Step-Down&amp;quot;
+ -n,--annotation              Create an additional file per study set which
+                              contains the annotations.
+ -o,--outdir &amp;lt;arg&amp;gt;            Specfies the directory in which the results will
+                              be placed.
+ -p,--population &amp;lt;arg&amp;gt;        File containing genes within the population.
+                              Required
+ -r,--resamplingsteps &amp;lt;arg&amp;gt;   Specifies the number of steps used in resampling
+                              based MTCs
+ -s,--studyset &amp;lt;arg&amp;gt;          File of the study set or a directory containing
+                              study set files. Required
+ -t,--sizetolerance &amp;lt;arg&amp;gt;     Specifies the percentage at which the actual study
+                              set size and the size of the resampled study sets
+                              are allowed to differ
+ -v,--version                 Shows version information and exits
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In order to do something useful, Ontologizer must be started with several arguments (as indicated with &amp;ldquo;Required&amp;rdquo; within the output above).&lt;/p&gt;
 
-&lt;p&gt;First, you are required to specify the -g (or &amp;ndash;go) option. This defines the path to a file which contains the GO terminology and structure. Ontologizer is able to parse files in the OBO format. Such are available directly at the GO Website.&lt;/p&gt;
+&lt;h2 id=&#34;required-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Required Arguments&lt;/h2&gt;
 
-&lt;p&gt;Second, you are required to specify the -a option which defines the mapping of gene names to GO terms. The GO Website provides association files for a variety of organisms, as well.&lt;/p&gt;
+&lt;p&gt;First, you are required to specify the &lt;code&gt;-g&lt;/code&gt; (or &lt;code&gt;--go&lt;/code&gt;) option. This defines the path to a file which contains the GO terminology and structure. Ontologizer is able to parse files in the OBO format. Such are available directly at the GO Website from &lt;a href=&#34;http://geneontology.org/page/download-ontology&#34;&gt;http://geneontology.org/page/download-ontology&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Third, you must specify a population file with the -p option. This file contains all gene names (one per line) of the population set, e.g. the names of the genes of your microarray.&lt;/p&gt;
+&lt;p&gt;Second, you are required to specify the &lt;code&gt;-a&lt;/code&gt; option which defines the mapping of gene names to GO terms. The GO Website provides association files for a variety of organisms, as well. See &lt;a href=&#34;http://geneontology.org/page/download-annotations&#34;&gt;http://geneontology.org/page/download-annotations&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Last, you need to specify the path to your study set(s) with the -s option.. This can eighter be a single file for a single study set or a directory, in which case all files (ending with *.txt) are considered as separate study sets. As for the population file, one line represents only a single gene name.&lt;/p&gt;
+&lt;p&gt;Third, you must specify a population file with the &lt;code&gt;-p&lt;/code&gt; option. This file contains all gene names (one per line) of the population set, e.g. the names of the genes of your microarray.&lt;/p&gt;
+
+&lt;p&gt;Last, you need to specify the path to your study set(s) with the &lt;code&gt;-s&lt;/code&gt; option. This can either be a single file for a single study set or a directory, in which case all files (ending with &lt;code&gt;*.txt&lt;/code&gt;) are considered as separate study sets. As for the population file, one line represents only a single gene name.&lt;/p&gt;
 
 &lt;p&gt;When started with these four parameters only, the output of Ontologizer&amp;rsquo;s calculation is written to a basic ascii table file into the same directory where the study files are located. The table&amp;rsquo;s filename is derived from the name of the study set in question but prepended with &amp;ldquo;table-&amp;rdquo; string.&lt;/p&gt;
 
-&lt;p&gt;Using the -d option, you can instruct Ontologizer to create a graphical output of the results. For every study set, a file (name is prepended with &amp;ldquo;view-&amp;rdquo;) is written which can be read by the graphviz &amp;lsquo;dot&amp;rsquo; tool to produce a viewable graphics file. In this file, terms are depicted by nodes and their hierachical relations are depicted by edges. Because the GO DAG contains a huge amount of terms, the graph is constructed only for signifant terms and their predecessors (up to the source) and those significant terms are highligthed. Which terms are considered as significant is influenced by their p-values and the significance threshold. This threshold is specified as a parameter to the -d argument. It must be a valid floating point value ranging from 0 to 0.5. For example use &amp;ldquo;-d 0.05&amp;rdquo; to define those terms as significant whose p-value falls below 0.05.&lt;/p&gt;
+&lt;h2 id=&#34;optional-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Optional Arguments&lt;/h2&gt;
 
-&lt;p&gt;In addition, you can specify a GO Term ID, after the floating-point value (separated by &amp;ldquo;,&amp;rdquo;). In this case only the subgraph starting at this term is written. For example use &amp;ldquo;-d 0.05,8152&amp;rdquo; to get only a graph with the term id GO:0008152 (metabolism) and its successors within the subgraph emanating from GO:0008152 such that all significantly overrepresented terms are included in the graph.&lt;/p&gt;
+&lt;p&gt;Using the &lt;code&gt;-d&lt;/code&gt; option, you can instruct Ontologizer to create a graphical output of the results. For every study set, a file (name is prepended with &amp;ldquo;view-&amp;rdquo;) is written which can be read by the graphviz &lt;code&gt;dot&lt;/code&gt; tool to produce a viewable graphics file. In this file, terms are depicted by nodes and their hierarchical relations are depicted by edges. Because the GO DAG contains a huge amount of terms, the graph is constructed only for significant terms and their predecessors (up to the source) and those significant terms are highligthed. Which terms are considered as significant is influenced by their p-values and the significance threshold. This threshold is specified as a parameter to the -d argument. It must be a valid floating point value ranging from 0 to 0.5. For example use &lt;code&gt;-d 0.05&lt;/code&gt; to define those terms as significant whose p-value falls below 0.05.&lt;/p&gt;
+
+&lt;p&gt;In addition, you can specify a GO Term ID, after the floating-point value (separated by &amp;ldquo;,&amp;rdquo;). In this case only the subgraph starting at this term is written. For example use &lt;code&gt;-d 0.05,8152&lt;/code&gt; to get only a graph with the term id &lt;code&gt;GO:0008152 (metabolism)&lt;/code&gt; and its successors within the subgraph emanating from &lt;code&gt;GO:0008152&lt;/code&gt; such that all significantly overrepresented terms are included in the graph.&lt;/p&gt;
 
 &lt;p&gt;Some sample datasets and population sets can be downloaded from this page.
 To perform parent-child analysis using Westphal-Young MTC on the Yeast data set from the tutorial page and display the results using dot, enter the following command:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;java -jar Ontologizer.jar -a gene_association.sgd -g gene_ontology.obo -s study/4hourSMinduced.txt -p population.txt -c Parent-Child-Union -m Westfall-Young-Single-Step -d 0.05 -r 1000
+&lt;pre&gt;&lt;code&gt;$ java -jar Ontologizer.jar -a gene_association.sgd -g gene_ontology.obo -s study/4hourSMinduced.txt -p population.txt -c Parent-Child-Union -m Westfall-Young-Single-Step -d 0.05 -r 1000
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The corresponding files must be in the current directory (or their full path must be indicated). To create a PNG image with the result, enter&lt;/p&gt;
