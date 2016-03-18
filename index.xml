@@ -116,10 +116,6 @@ all dependencies included with the exception of SWT.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;in the command line, assuming that both swt.jar and OntologizerGui.jar files are present in the current directory. On MacOSX you may have to add -XstartOnFirstThread, -d32 or both before the -cp argument, depending on the SWT version you have just downloaded.&lt;/p&gt;
-
-&lt;h2 id=&#34;accessing-source:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Accessing Source&lt;/h2&gt;
-
-&lt;p&gt;The source of Ontologizer can be found at &lt;a href=&#34;https://github.com/sba1/ontologizer&#34;&gt;https://github.com/sba1/ontologizer&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -401,6 +397,17 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 &lt;p&gt;Windows users can obtain the installation package of Graphviz following the Download link of www.graphviz.org. On this site, you also can find the latest source packages which can be used, for instance by Linux, users to compile the package. Linux Distributions such as Debian provide binary packages for Graphviz as well. This allows a straithforward installation of Graphviz.&lt;/p&gt;
 
 &lt;p&gt;Note that in general, the standard installtion (of the Windows and Linux installation) is perfectly suited for Ontologizer. If however, for any reason, the dot exectutable is not in the command path, you have to tell Ontologizer explicitly where this command can be found by entering the full path within the Preferences window, which can be obtained via the Window &amp;gt; Preferences&amp;hellip;. menu entry.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Contributing</title>
+      <link>/contributing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contributing/</guid>
+      <description>&lt;p&gt;The source of Ontologizer can currently be found at &lt;a href=&#34;https://github.com/sba1/ontologizer&#34;&gt;https://github.com/sba1/ontologizer&lt;/a&gt;.
+For contributing, the easiest is to fork the project and to issue pull requests there.&lt;/p&gt;
 </description>
     </item>
     
