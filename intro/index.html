@@ -69,6 +69,14 @@ MathJax.Hub.Config({
                     
                 
                     
+                    <li class="pure-menu-item"><a href="../invoke-manually/" class="pure-menu-link">Invoke Manually</a></li>
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../webstart/" class="pure-menu-link">Webstart</a></li>
+                    
+                
+                    
                     <li class="pure-menu-item"><a href="../commandline/" class="pure-menu-link">Command Line</a></li>
                     
                 
@@ -152,20 +160,6 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 <p>Finally, note that Gene Ontology annotations are made to the most specific term possible. All ancestors of the term are considered to be implicitly annotated. Therefore, if we are calculating the total annotations of a term, we need to count annotations to all (more specific) descendents of the term also. Note that we need to avoid introducing &ldquo;extra&rdquo; (duplicate) counts if there are multiple paths from a descendent term to an ancestor term, or if two distinct descendents of a term are annotated for a certain gene. A discussion of these issues is available in Robinson et al. (2004) <a href="http://www.ncbi.nlm.nih.gov/pubmed/15254011?dopt=Abstract">Gene-Ontology analysis reveals association of tissue-specific 5&rsquo; CpG-island genes with development and embryogenesis</a></p>
 
-<h3 id="downloading-the-ontologizer-source-code:34c4da6d4768d05e50db99357a299b5c">Downloading the Ontologizer Source Code</h3>
-
-<p>The <a href="http://svn.code.sf.net/p/ontologizer/svn/">source code</a> contains all the code as well as an Eclipse project file. The source code can be imported as an Eclipse project and compiled with Eclipse.</p>
-
-<h2 id="webstart:34c4da6d4768d05e50db99357a299b5c">Webstart</h2>
-
-<p>The Ontologizer can be started directly from this website using Java webstart by clicking on the following icon:</p>
-
-<p><a href="../webstart/ontologizer.jnlp"><img src="../images/webstart.jpg" alt="Foo" /></a></p>
-
-<p>Webstart applications are started directly from a web browser, which downloads the program code to the local computer. If the code has already been downloaded, the browser checks if the server has a newer version. If not, the local copy of the program is started. Further information is available at Sun&rsquo;s webstart site.</p>
-
-<p>For users, webstart means that the webbrowser will automatically download and use the latest available version of the webstart program, so users will automatically benefit from updates and bugfixes. Once the current version of the program has been downloaded, the program will start essentially as quickly as a traditional desktop application.</p>
-
 <h3 id="potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer:34c4da6d4768d05e50db99357a299b5c">Potential Problems with the Term Browser and Help Window of the Ontologizer</h3>
 
 <p>With some combinations of debian linux and firefox, we have noticed a problem with the Ontologizer finding the libraries needed to allow browsing of GO terms and the show the HTML format of the help system. If you notice this problem, it may help to set the variable MOZILLA_FIVE_HOME in the file /etc/environment as follows:</p>
@@ -178,25 +172,6 @@ The first version of the Ontologizer has been completely redesigned to provide a
 <h3 id="macintosh:34c4da6d4768d05e50db99357a299b5c">MacIntosh</h3>
 
 <p>The Ontologizer is built using GUI elements from the Standard Widget Toolkit (SWT) known from Eclipse. SWT has been built and test for Windows and Linux systems and the Ontologizer should work without problems on machines running Linux or modern versions of Windows. Unfortunately, the SWT for Mac OSX is not yet advanced enough, and therefore we decided to declare Ontologizer for Macintosh as unsupported at this time. Embarassed</p>
-
-<h2 id="manual-invocation:34c4da6d4768d05e50db99357a299b5c">Manual Invocation</h2>
-
-<p>If the WebStart facility doesn&rsquo;t work for your platform, you can download <a href="../gui/OntologizerGui.jar">OntologizerGui.jar</a>. This comes with
-all dependencies included with the exception of SWT.</p>
-
-<p>Therefore, in order to run the application, you need to have the proper SWT-jar as well. This can be obtained by following <a href="http://www.eclipse.org/swt/">Eclipse&rsquo;s SWT homepage</a>. Current versions of Ontologizer are build against version 3.7 of SWT, thus it is recommended to use the <a href="http://download.eclipse.org/eclipse/downloads/drops/R-3.7.2-201202080800/#SWT">SWT 3.7</a> as well. Note that the platform of the SWT archive has to match the platform of your computer system. For instance, if you are running on Windows, download the Windows SWT archive, or if you are running on a 64 bit x86 Linux, download the SWT archive indicated by x86_64.</p>
-
-<p>Once you have downloaded the ontologizer.jar file and located the swt.jar file within the downloaded SWT archive you can start Ontologizer by typing (on Linux)</p>
-
-<pre><code>$ java -Xmx1G -cp swt.jar:OntologizerGui.jar ontologizer.gui.swt.Ontologizer
-</code></pre>
-
-<p>or by typing (on Windows)</p>
-
-<pre><code>&gt; java -XmX1G -cp swt.jar;OntologizerGui.jar ontologizer.gui.swt.Ontologizer
-</code></pre>
-
-<p>in the command line, assuming that both swt.jar and OntologizerGui.jar files are present in the current directory. On MacOSX you may have to add -XstartOnFirstThread, -d32 or both before the -cp argument, depending on the SWT version you have just downloaded.</p>
 
     </div>
 </div>

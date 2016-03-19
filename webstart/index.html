@@ -69,29 +69,38 @@
 <div id="main">
 
     <div class="header">
-        <h1>Ontologizer</h1>
+        <h1>Webstart</h1>
         
     </div>
 
     <div class="content">
         
 
-<p>Ontologizer is a tool for the statistical analysis and visualization of high-throughput biological
-data using Gene Ontology. Most conveniently, it can be started via the Java Webstart facility:</p>
+<p>The Ontologizer can be started directly from this website using Java webstart by
+clicking on the following icon:</p>
 
 <p><center>
 <a href="../webstart/ontologizer.jnlp"><img src="../images/webstart.jpg" alt="Webstart" /></a>
 </center></p>
 
-<p>Note however that the Webstart facility will no longer work by default with recent versions of
-the Java runtime due to increased security settings. See the <a href="../webstart/">Webstart</a>
-section for details.</p>
+<p>Webstart applications are started directly from a web browser, which downloads the
+program code to the local computer. If the code has already been downloaded, the
+browser checks if the server has a newer version. If not, the local copy of the
+program is started. Further information is available at Sun&rsquo;s webstart site.</p>
 
-<h2 id="other-downloads:b9bcf8cb73ce4a081a635ad7c0acd9dd">Other Downloads</h2>
+<p>For users, webstart means that the webbrowser will automatically download and
+use the latest available version of the webstart program, so users will automatically
+benefit from updates and bugfixes. Once the current version of the program has been
+downloaded, the program will start essentially as quickly as a traditional desktop
+application.</p>
 
-<p>Command line: <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a></p>
+<h2 id="troubles:c401aef215b0fc7a3ef212beafcd14f5">Troubles</h2>
 
-<p>GUI (without SWT): <a href="../gui/OntologizerGui.jar">OntologizerGui.jar</a></p>
+<p>The Java may refuse to start Ontologizer using Webstart facility as the binaries
+are only self-signed. To circumvent this problem, the most easy solution is to add the
+site <code>http://ontologizer.de</code> to the <em>Exception Site List</em> under the <em>Security</em>
+tab within the <em>Java Control Panel</em> application. See
+<a href="https://www.java.com/de/download/help/jcp_security.xml">https://www.java.com/de/download/help/jcp_security.xml</a> for details.</p>
 
     </div>
 </div>

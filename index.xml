@@ -71,20 +71,6 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;Finally, note that Gene Ontology annotations are made to the most specific term possible. All ancestors of the term are considered to be implicitly annotated. Therefore, if we are calculating the total annotations of a term, we need to count annotations to all (more specific) descendents of the term also. Note that we need to avoid introducing &amp;ldquo;extra&amp;rdquo; (duplicate) counts if there are multiple paths from a descendent term to an ancestor term, or if two distinct descendents of a term are annotated for a certain gene. A discussion of these issues is available in Robinson et al. (2004) &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/15254011?dopt=Abstract&#34;&gt;Gene-Ontology analysis reveals association of tissue-specific 5&amp;rsquo; CpG-island genes with development and embryogenesis&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;downloading-the-ontologizer-source-code:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Downloading the Ontologizer Source Code&lt;/h3&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://svn.code.sf.net/p/ontologizer/svn/&#34;&gt;source code&lt;/a&gt; contains all the code as well as an Eclipse project file. The source code can be imported as an Eclipse project and compiled with Eclipse.&lt;/p&gt;
-
-&lt;h2 id=&#34;webstart:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Webstart&lt;/h2&gt;
-
-&lt;p&gt;The Ontologizer can be started directly from this website using Java webstart by clicking on the following icon:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;./webstart/ontologizer.jnlp&#34;&gt;&lt;img src=&#34;./images/webstart.jpg&#34; alt=&#34;Foo&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Webstart applications are started directly from a web browser, which downloads the program code to the local computer. If the code has already been downloaded, the browser checks if the server has a newer version. If not, the local copy of the program is started. Further information is available at Sun&amp;rsquo;s webstart site.&lt;/p&gt;
-
-&lt;p&gt;For users, webstart means that the webbrowser will automatically download and use the latest available version of the webstart program, so users will automatically benefit from updates and bugfixes. Once the current version of the program has been downloaded, the program will start essentially as quickly as a traditional desktop application.&lt;/p&gt;
-
 &lt;h3 id=&#34;potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Potential Problems with the Term Browser and Help Window of the Ontologizer&lt;/h3&gt;
 
 &lt;p&gt;With some combinations of debian linux and firefox, we have noticed a problem with the Ontologizer finding the libraries needed to allow browsing of GO terms and the show the HTML format of the help system. If you notice this problem, it may help to set the variable MOZILLA_FIVE_HOME in the file /etc/environment as follows:&lt;/p&gt;
@@ -97,25 +83,6 @@ The first version of the Ontologizer has been completely redesigned to provide a
 &lt;h3 id=&#34;macintosh:34c4da6d4768d05e50db99357a299b5c&#34;&gt;MacIntosh&lt;/h3&gt;
 
 &lt;p&gt;The Ontologizer is built using GUI elements from the Standard Widget Toolkit (SWT) known from Eclipse. SWT has been built and test for Windows and Linux systems and the Ontologizer should work without problems on machines running Linux or modern versions of Windows. Unfortunately, the SWT for Mac OSX is not yet advanced enough, and therefore we decided to declare Ontologizer for Macintosh as unsupported at this time. Embarassed&lt;/p&gt;
-
-&lt;h2 id=&#34;manual-invocation:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Manual Invocation&lt;/h2&gt;
-
-&lt;p&gt;If the WebStart facility doesn&amp;rsquo;t work for your platform, you can download &lt;a href=&#34;./gui/OntologizerGui.jar&#34;&gt;OntologizerGui.jar&lt;/a&gt;. This comes with
-all dependencies included with the exception of SWT.&lt;/p&gt;
-
-&lt;p&gt;Therefore, in order to run the application, you need to have the proper SWT-jar as well. This can be obtained by following &lt;a href=&#34;http://www.eclipse.org/swt/&#34;&gt;Eclipse&amp;rsquo;s SWT homepage&lt;/a&gt;. Current versions of Ontologizer are build against version 3.7 of SWT, thus it is recommended to use the &lt;a href=&#34;http://download.eclipse.org/eclipse/downloads/drops/R-3.7.2-201202080800/#SWT&#34;&gt;SWT 3.7&lt;/a&gt; as well. Note that the platform of the SWT archive has to match the platform of your computer system. For instance, if you are running on Windows, download the Windows SWT archive, or if you are running on a 64 bit x86 Linux, download the SWT archive indicated by x86_64.&lt;/p&gt;
-
-&lt;p&gt;Once you have downloaded the ontologizer.jar file and located the swt.jar file within the downloaded SWT archive you can start Ontologizer by typing (on Linux)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ java -Xmx1G -cp swt.jar:OntologizerGui.jar ontologizer.gui.swt.Ontologizer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;or by typing (on Windows)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; java -XmX1G -cp swt.jar;OntologizerGui.jar ontologizer.gui.swt.Ontologizer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;in the command line, assuming that both swt.jar and OntologizerGui.jar files are present in the current directory. On MacOSX you may have to add -XstartOnFirstThread, -d32 or both before the -cp argument, depending on the SWT version you have just downloaded.&lt;/p&gt;
 </description>
     </item>
     
@@ -125,16 +92,24 @@ all dependencies included with the exception of SWT.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/home/</guid>
-      <description>&lt;p&gt;Ontologizer is a a tool for the statistical analysis and visualization of high-throughput biological
-data using Gene Ontology.&lt;/p&gt;
+      <description>
+
+&lt;p&gt;Ontologizer is a tool for the statistical analysis and visualization of high-throughput biological
+data using Gene Ontology. Most conveniently, it can be started via the Java Webstart facility:&lt;/p&gt;
 
 &lt;p&gt;&lt;center&gt;
 &lt;a href=&#34;./webstart/ontologizer.jnlp&#34;&gt;&lt;img src=&#34;./images/webstart.jpg&#34; alt=&#34;Webstart&#34; /&gt;&lt;/a&gt;
 &lt;/center&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;Mac OS X users, who experienced problems starting Ontologizer, may want to disable Java7 support for starting Webstart applications until the problem is solved. See &lt;a href=&#34;http://support.apple.com/kb/HT5559&#34;&gt;http://support.apple.com/kb/HT5559&lt;/a&gt; for instructions. Thanks to Christine Oger for finding this work-arround.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Note however that the Webstart facility will no longer work by default with recent versions of
+the Java runtime due to increased security settings. See the &lt;a href=&#34;./webstart/&#34;&gt;Webstart&lt;/a&gt;
+section for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;other-downloads:b9bcf8cb73ce4a081a635ad7c0acd9dd&#34;&gt;Other Downloads&lt;/h2&gt;
+
+&lt;p&gt;Command line: &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;GUI (without SWT): &lt;a href=&#34;./gui/OntologizerGui.jar&#34;&gt;OntologizerGui.jar&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -284,6 +259,67 @@ pop.name &lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt; &lt;span styl
 write.table&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;mapping&lt;span style=&#34;color: #f8f8f2&#34;&gt;[,&lt;/span&gt;&lt;span style=&#34;color: #ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;],&lt;/span&gt;col.names&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;row.names&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;quote&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;file&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;pop.name&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Invoke Manually</title>
+      <link>/invoke-manually/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/invoke-manually/</guid>
+      <description>&lt;p&gt;If the WebStart facility doesn&amp;rsquo;t work for your platform, you can download &lt;a href=&#34;./gui/OntologizerGui.jar&#34;&gt;OntologizerGui.jar&lt;/a&gt;. This comes with
+all dependencies included with the exception of SWT.&lt;/p&gt;
+
+&lt;p&gt;Therefore, in order to run the application, you need to have the proper SWT-jar as well. This can be obtained by following &lt;a href=&#34;http://www.eclipse.org/swt/&#34;&gt;Eclipse&amp;rsquo;s SWT homepage&lt;/a&gt;. Current versions of Ontologizer are build against version 3.7 of SWT, thus it is recommended to use the &lt;a href=&#34;http://download.eclipse.org/eclipse/downloads/drops/R-3.7.2-201202080800/#SWT&#34;&gt;SWT 3.7&lt;/a&gt; as well. Note that the platform of the SWT archive has to match the platform of your computer system. For instance, if you are running on Windows, download the Windows SWT archive, or if you are running on a 64 bit x86 Linux, download the SWT archive indicated by x86_64.&lt;/p&gt;
+
+&lt;p&gt;Once you have downloaded the ontologizer.jar file and located the swt.jar file within the downloaded SWT archive you can start Ontologizer by typing (on Linux)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ java -Xmx1G -cp swt.jar:OntologizerGui.jar ontologizer.gui.swt.Ontologizer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or by typing (on Windows)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; java -XmX1G -cp swt.jar;OntologizerGui.jar ontologizer.gui.swt.Ontologizer
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;in the command line, assuming that both swt.jar and OntologizerGui.jar files are present in the current directory. On MacOSX you may have to add -XstartOnFirstThread, -d32 or both before the -cp argument, depending on the SWT version you have just downloaded.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Webstart</title>
+      <link>/webstart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/webstart/</guid>
+      <description>
+
+&lt;p&gt;The Ontologizer can be started directly from this website using Java webstart by
+clicking on the following icon:&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;a href=&#34;./webstart/ontologizer.jnlp&#34;&gt;&lt;img src=&#34;./images/webstart.jpg&#34; alt=&#34;Webstart&#34; /&gt;&lt;/a&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Webstart applications are started directly from a web browser, which downloads the
+program code to the local computer. If the code has already been downloaded, the
+browser checks if the server has a newer version. If not, the local copy of the
+program is started. Further information is available at Sun&amp;rsquo;s webstart site.&lt;/p&gt;
+
+&lt;p&gt;For users, webstart means that the webbrowser will automatically download and
+use the latest available version of the webstart program, so users will automatically
+benefit from updates and bugfixes. Once the current version of the program has been
+downloaded, the program will start essentially as quickly as a traditional desktop
+application.&lt;/p&gt;
+
+&lt;h2 id=&#34;troubles:c401aef215b0fc7a3ef212beafcd14f5&#34;&gt;Troubles&lt;/h2&gt;
+
+&lt;p&gt;The Java may refuse to start Ontologizer using Webstart facility as the binaries
+are only self-signed. To circumvent this problem, the most easy solution is to add the
+site &lt;code&gt;http://ontologizer.de&lt;/code&gt; to the &lt;em&gt;Exception Site List&lt;/em&gt; under the &lt;em&gt;Security&lt;/em&gt;
+tab within the &lt;em&gt;Java Control Panel&lt;/em&gt; application. See
+&lt;a href=&#34;https://www.java.com/de/download/help/jcp_security.xml&#34;&gt;https://www.java.com/de/download/help/jcp_security.xml&lt;/a&gt; for details.&lt;/p&gt;
 </description>
     </item>
     
