@@ -36,7 +36,7 @@
                     
                 
                     
-                    <li class="pure-menu-item"><a href="../howto/" class="pure-menu-link">How To</a></li>
+                    <li class="pure-menu-item"><a href="../webstart/" class="pure-menu-link">Webstart</a></li>
                     
                 
                     
@@ -44,11 +44,11 @@
                     
                 
                     
-                    <li class="pure-menu-item"><a href="../webstart/" class="pure-menu-link">Webstart</a></li>
+                    <li class="pure-menu-item"><a href="../commandline/" class="pure-menu-link">Command Line</a></li>
                     
                 
                     
-                    <li class="pure-menu-item"><a href="../commandline/" class="pure-menu-link">Command Line</a></li>
+                    <li class="pure-menu-item"><a href="../howto/" class="pure-menu-link">How To</a></li>
                     
                 
                     
@@ -88,28 +88,27 @@ the <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a> file first.</p>
 
 <p>will produce following output:</p>
 
-<pre><code>usage: java -jar Ontologizer.jar [-a &lt;arg&gt;] [-c &lt;arg&gt;] [-d &lt;arg&gt;] [-f &lt;arg&gt;] [-g
-       &lt;arg&gt;] [-h] [-i] [-m &lt;arg&gt;] [-n] [-o &lt;arg&gt;] [-p &lt;arg&gt;] [-r &lt;arg&gt;] [-s
-       &lt;arg&gt;] [-t &lt;arg&gt;] [-v]
+<pre><code>usage: java -jar Ontologizer.jar [-a &lt;file&gt;] [-c &lt;arg&gt;] [-d &lt;[thrsh[,id]|id]&gt;]
+       [-f &lt;arg&gt;] [-g &lt;file&gt;] [-h] [-i] [-m &lt;arg&gt;] [-n] [-o &lt;arg&gt;] [-p &lt;file&gt;]
+       [-r &lt;arg&gt;] [-s &lt;path&gt;] [-t &lt;arg&gt;] [-v]
 Analyze High-Throughput Biological Data Using Gene Ontology
- -a,--association &lt;arg&gt;       File containing associations from genes to GO
+ -a,--association &lt;file&gt;      File containing associations from genes to GO
                               terms. Required
  -c,--calculation &lt;arg&gt;       Specifies the calculation method to use. Possible
                               values are: &quot;MGSA&quot;, &quot;Parent-Child-Intersection&quot;,
                               &quot;Parent-Child-Union&quot; (default), &quot;Term-For-Term&quot;,
                               &quot;Topology-Elim&quot;, &quot;Topology-Weighted&quot;
- -d,--dot &lt;arg&gt;               For every study set analysis write out an
+ -d,--dot &lt;[thrsh[,id]|id]&gt;   For every study set analysis write out an
                               additional .dot file (GraphViz) containing the
                               graph that is induced by interesting nodes. The
-                              optional argument in range between 0 and 1
-                              specifies the threshold used to identify
-                              interesting nodes. By appending a GO Term
-                              identifier (separated by a comma) the output is
-                              restriced to the subgraph originating at this GO
-                              term.
+                              optional argument thrsh must be in range between 0
+                              and 1 and it specifies the threshold used to
+                              identify interesting nodes (defaults to 0.05). The
+                              GO term identifier id restricts the output to the
+                              subgraph originating at id.
  -f,--filter &lt;arg&gt;            Filter the gene names by appling rules in a given
                               file (currently only mapping supported).
- -g,--go &lt;arg&gt;                File containig GO terminology and structure (.obo
+ -g,--go &lt;file&gt;               File containig GO terminology and structure (.obo
                               format). Required
  -h,--help                    Shows this help
  -i,--ignore                  Ignore genes to which no association exist within
@@ -123,12 +122,12 @@ Analyze High-Throughput Biological Data Using Gene Ontology
                               contains the annotations.
  -o,--outdir &lt;arg&gt;            Specfies the directory in which the results will
                               be placed.
- -p,--population &lt;arg&gt;        File containing genes within the population.
+ -p,--population &lt;file&gt;       File containing genes within the population.
                               Required
  -r,--resamplingsteps &lt;arg&gt;   Specifies the number of steps used in resampling
                               based MTCs
- -s,--studyset &lt;arg&gt;          File of the study set or a directory containing
-                              study set files. Required
+ -s,--studyset &lt;path&gt;         Path to a file of a study set or to a directory
+                              containing study set files. Required
  -t,--sizetolerance &lt;arg&gt;     Specifies the percentage at which the actual study
                               set size and the size of the resampled study sets
                               are allowed to differ
