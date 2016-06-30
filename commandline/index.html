@@ -30,6 +30,10 @@
             <ul class="pure-menu-list">
                 
                     
+                    <li class="pure-menu-item"><a href="../input/" class="pure-menu-link">Input</a></li>
+                    
+                
+                    
                     <li class="pure-menu-item"><a href="../intro/" class="pure-menu-link">Introduction</a></li>
                     
                 
@@ -79,7 +83,7 @@
 <p>The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though. But if you want to use the command-line version, you need to download
 the <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a> file first.</p>
 
-<h2 id="help:89dc0b89bd17fa3b3b6dcf3a7dd09dc1">Help</h2>
+<h2 id="help">Help</h2>
 
 <p>Ontologizer is a Java-Application and needs to be started via the <code>java</code> command and be invoked with a plenty of arguments. All possible command arguments along with a short description can be viewed via the <code>--help</code> argument. E.g.</p>
 
@@ -136,7 +140,7 @@ Analyze High-Throughput Biological Data Using Gene Ontology
 
 <p>In order to do something useful, Ontologizer must be started with several arguments (as indicated with &ldquo;Required&rdquo; within the output above).</p>
 
-<h2 id="required-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1">Required Arguments</h2>
+<h2 id="required-arguments">Required Arguments</h2>
 
 <p>First, you are required to specify the <code>-g</code> (or <code>--go</code>) option. This defines the path to a file which contains the GO terminology and structure. Ontologizer is able to parse files in the OBO format. Such are available directly at the GO Website from <a href="http://geneontology.org/page/download-ontology">http://geneontology.org/page/download-ontology</a>.</p>
 
@@ -148,7 +152,7 @@ Analyze High-Throughput Biological Data Using Gene Ontology
 
 <p>When started with these four parameters only, the output of Ontologizer&rsquo;s calculation is written to a basic ascii table file into the same directory where the study files are located. The table&rsquo;s filename is derived from the name of the study set in question but prepended with &ldquo;table-&rdquo; string.</p>
 
-<h2 id="optional-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1">Optional Arguments</h2>
+<h2 id="optional-arguments">Optional Arguments</h2>
 
 <p>Using the <code>-d</code> option, you can instruct Ontologizer to create a graphical output of the results. For every study set, a file (name is prepended with &ldquo;view-&rdquo;) is written which can be read by the graphviz <code>dot</code> tool to produce a viewable graphics file. In this file, terms are depicted by nodes and their hierarchical relations are depicted by edges. Because the GO DAG contains a huge amount of terms, the graph is constructed only for significant terms and their predecessors (up to the source) and those significant terms are highligthed. Which terms are considered as significant is influenced by their p-values and the significance threshold. This threshold is specified as a parameter to the -d argument. It must be a valid floating point value ranging from 0 to 0.5. For example use <code>-d 0.05</code> to define those terms as significant whose p-value falls below 0.05.</p>
 
@@ -168,7 +172,7 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 <p>The corresponding graphic should look something like this:
 <img src="../images/Example.png" alt="Dot Example" /></p>
 
-<h2 id="obtaining-graphviz:89dc0b89bd17fa3b3b6dcf3a7dd09dc1">Obtaining Graphviz</h2>
+<h2 id="obtaining-graphviz">Obtaining Graphviz</h2>
 
 <p>Graphviz is a Open Source project which provides tools for layouting and depicting graphs. Hereby, graph references to mathematical entities which consists of nodes and edges.</p>
 

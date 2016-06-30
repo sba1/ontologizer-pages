@@ -9,6 +9,47 @@
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Input</title>
+      <link>/input/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/input/</guid>
+      <description>
+
+&lt;p&gt;For conducting an Ontologizer gene enrichment analysis, three types of files are
+necessary inputs.&lt;/p&gt;
+
+&lt;h3 id=&#34;gene-ontology-files&#34;&gt;Gene Ontology Files&lt;/h3&gt;
+
+&lt;p&gt;The Ontologizer requires the Gene Ontology terms file (e.g., &lt;code&gt;gene_ontology.obo&lt;/code&gt;), which is the file that describes individual GO terms and their relationships to one another. This file can be downloaded from the &lt;a href=&#34;http://geneontology.org/&#34;&gt;Gene Ontology homepage&lt;/a&gt;. Alternatively, the Ontologizer can automatically download the latest version if you specify the URL to this file.&lt;/p&gt;
+
+&lt;h3 id=&#34;gene-association-files&#34;&gt;Gene Association Files&lt;/h3&gt;
+
+&lt;h4 id=&#34;gaf&#34;&gt;GAF&lt;/h4&gt;
+
+&lt;p&gt;The OBO file describes only the functional hierarchy of terms and does not provide functional annotations for actual genes. For this purpose, users need to download the appropriate annotation file. These files are generally entitled gene_association.XXX, where XXX stands for the database or species (e.g., mgi for &lt;a href=&#34;http://www.informatics.jax.org/&#34;&gt;Mouse Genome Informatics&lt;/a&gt;, and sgd for &lt;a href=&#34;http://www.yeastgenome.org/&#34;&gt;Saccharomyces Genome Database&lt;/a&gt;. Association files can also be downloaded from the Gene Ontology homepage. The Ontologizer can also automatically download the latest version of the association file for a number of commonly analyzed organisms (See the tutorial within the Ontologizer application for more details).&lt;/p&gt;
+
+&lt;h4 id=&#34;simple-format&#34;&gt;Simple Format&lt;/h4&gt;
+
+&lt;p&gt;For mappings not available via official annotation files, a simple two column
+format is supported as well. The name of such mapping files must have a &lt;code&gt;.ids&lt;/code&gt;
+suffix. The actual contents of must conform to the following structure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GoStat IDs Format Version 1.0
+&amp;lt;gene&amp;gt;&amp;lt;tab&amp;gt;&amp;lt;termid&amp;gt;,&amp;lt;termid&amp;gt;,...,&amp;lt;termid&amp;gt;
+...
+&amp;lt;gene&amp;gt;&amp;lt;tab&amp;gt;&amp;lt;termid&amp;gt;,&amp;lt;termid&amp;gt;,...,&amp;lt;termid&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;data-files-study-sets&#34;&gt;Data Files / Study Sets&lt;/h3&gt;
+
+&lt;p&gt;The Ontologizer produces listings of GO annotations for user supplied lists of genes or gene products. One situation in which this can be useful is for &amp;ldquo;clustering&amp;rdquo; analysis of microarray data, but there are many other potential uses. The Ontologizer assumes that each group of genes resides in its own file, and presently accepts FASTA files as well as files in which each gene is on its own line. For FASTA and plain files, the first word on a line (for FASTA files, the first word following the &amp;ldquo;&amp;gt;&amp;rdquo; sign) is taken to be the name of the gene or gene product, and anything else on the line is taken to be a description. It is easy to extend the source code to allow for other types of file formats.&lt;/p&gt;
+
+&lt;p&gt;The user should copy files representing the results of clustering into a separate directory. Note that the names of the genes or gene products need to correspond to the nomenclature used in the association file for the Ontologizer to function properly. This can be especially problematic if (for instance) EST names are present in the results of clustering. Several solutions to such problems are presented below on this web page in the form of Perl scripts that can transform files and gene names such that the Ontologizer will recognize the names.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Introduction</title>
       <link>/intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -25,7 +66,7 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;The following pages present a brief introduction to the Gene Ontology, the standard &amp;ldquo;term-for-term&amp;rdquo; approach to statistical analysis, and the the parent child approach.&lt;/p&gt;
 
-&lt;h2 id=&#34;background:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Background&lt;/h2&gt;
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;This section intends to give readers a very quick overview of the GO. The &lt;a href=&#34;http://www.geneontology.org/&#34;&gt;GO homepage&lt;/a&gt; is a great source of documentation. Readers are also refered to the original paper on GO by Ashburner and coworkers as well as a &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;amp;db=PubMed&amp;amp;dopt=Abstract&amp;amp;list_uids=16381878&#34;&gt;recent overview&lt;/a&gt; for more information.&lt;/p&gt;
 
@@ -35,15 +76,15 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;The GO terms do not themselves describe specific genes or gene products. Rather, collaborating databases generate gene association files consisting of links between genes or gene products and GO terms. Genes and gene products are annotated at the most specific level possible, but are considered to share the attributes of all the parent nodes. Association files have been made available for m organisms, including human, mouse, yeast and Caenorhabditis elegans.&lt;/p&gt;
 
-&lt;h2 id=&#34;overrepresentation:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Overrepresentation&lt;/h2&gt;
+&lt;h2 id=&#34;overrepresentation&#34;&gt;Overrepresentation&lt;/h2&gt;
 
-&lt;h3 id=&#34;introduction:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Introduction&lt;/h3&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
 
 &lt;p&gt;We use the designation &amp;ldquo;Term-for-Term (TFT) analysis&amp;rdquo; to refer to the standard method of performing statistical analysis for overrepresentation in GO. Please see the section on Parent-Child analysis for an explanation of this name.&lt;/p&gt;
 
 &lt;p&gt;TFT analysis is based on the following assumptions. We are generally interesting in knowing if a subset of genes from a larger population has any special characteristics. We will define the subset as our study group. This could be a set of overexpressed genes from a microarray experiment. Note that there may be several study groups, for instance, overexpressed genes and underexpressed genes. The population group would then be defined as all genes represented on the microarray. We can then ask if the frequency of a annotation to a Gene Ontology term is different for the study group compared to the overall population.&lt;/p&gt;
 
-&lt;h3 id=&#34;modified-fisher-s-exact-test:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Modified Fisher&amp;rsquo;s Exact Test&lt;/h3&gt;
+&lt;h3 id=&#34;modified-fisher-s-exact-test&#34;&gt;Modified Fisher&amp;rsquo;s Exact Test&lt;/h3&gt;
 
 &lt;p&gt;Thus, we can imagine a binary random variable for each gene in the population with two mutual exclusive values: 1) The gene is annotated to the GO term in question or 2) The gene is not annotated to the GO term.&lt;/p&gt;
 
@@ -57,13 +98,13 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;This is essentially the same as the Fisher Exact Test, except that we are only testing for overrepresentation. The Fisher Exact test, in contrast, tests for either extreme (over- or underrepresentation). It has become the convention in GO analysis not to test for underrepresentation of GO terms, because the biological significance of underrepresentation is much less clear than the significance of overrepresentation.&lt;/p&gt;
 
-&lt;h3 id=&#34;parent-child-analysis:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Parent-Child Analysis&lt;/h3&gt;
+&lt;h3 id=&#34;parent-child-analysis&#34;&gt;Parent-Child Analysis&lt;/h3&gt;
 
 &lt;p&gt;The Parent-Child method represents a new algorithm for identifying overrepresented Gene Ontology (GO) annotations in gene sets. While the current methods treats each term independently and hence ignores the structure of the GO hierarchy, our approach takes parent-child relationships into account. Over-representation of a term is measured with respect to the presence of its parental terms in the set. This resolves the problem that the standard approach tends to falsely detect an over-representation of more specific terms below terms known to be over-represented. Our approach comes at no additional computational complexity when compared to the standard approach.&lt;/p&gt;
 
 &lt;p&gt;The parent-child method is described in detail in &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/17848398?dopt=Abstract&#34;&gt;Grossmann et al. (2007), Improved Detection of Overrepresentation of Gene-Ontology Annotations with Parent-Child Analysis&lt;/a&gt; (Available as an Open-Access Bioinformatics Article). A conference report from the RECOMB06 &lt;a href=&#34;http://dx.doi.org/10.1007/11732990_9&#34;&gt;An Improved Statistic for Detecting Over-Represented Gene Ontology Annotations in Gene Sets&lt;/a&gt;, has appeared in Springer&amp;rsquo;s Lecture Notes in Computer Science.&lt;/p&gt;
 
-&lt;h3 id=&#34;multiple-testing:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Multiple Testing&lt;/h3&gt;
+&lt;h3 id=&#34;multiple-testing&#34;&gt;Multiple Testing&lt;/h3&gt;
 
 &lt;p&gt;Since in general we will test up to thousands of GO terms for overrepresentation, we need to apply some correction for multiple testing. At present, the Ontologizer uses a classic Bonferroni correction, meaning it multiplies the nominal p-values calculated as described above by the number of tests performed. This is a very conservative form of correction for multiple testing. We can limit the number of tests performed by deciding not to test GO terms that do not annotate any genes in the population (since the study group is drawn from the population, if no genes are annotated than obviously overrepresentation of the term is impossible). Additionally, if a term annotates only one gene in the population than it is apparent that testing for overrepresentation in the study group has little meaning. Note that the number of genes in the study group annotated to the term does (and should) not need to be taken into account here.&lt;/p&gt;
 
@@ -71,7 +112,7 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;Finally, note that Gene Ontology annotations are made to the most specific term possible. All ancestors of the term are considered to be implicitly annotated. Therefore, if we are calculating the total annotations of a term, we need to count annotations to all (more specific) descendents of the term also. Note that we need to avoid introducing &amp;ldquo;extra&amp;rdquo; (duplicate) counts if there are multiple paths from a descendent term to an ancestor term, or if two distinct descendents of a term are annotated for a certain gene. A discussion of these issues is available in Robinson et al. (2004) &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/15254011?dopt=Abstract&#34;&gt;Gene-Ontology analysis reveals association of tissue-specific 5&amp;rsquo; CpG-island genes with development and embryogenesis&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer:34c4da6d4768d05e50db99357a299b5c&#34;&gt;Potential Problems with the Term Browser and Help Window of the Ontologizer&lt;/h3&gt;
+&lt;h3 id=&#34;potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer&#34;&gt;Potential Problems with the Term Browser and Help Window of the Ontologizer&lt;/h3&gt;
 
 &lt;p&gt;With some combinations of debian linux and firefox, we have noticed a problem with the Ontologizer finding the libraries needed to allow browsing of GO terms and the show the HTML format of the help system. If you notice this problem, it may help to set the variable MOZILLA_FIVE_HOME in the file /etc/environment as follows:&lt;/p&gt;
 
@@ -80,7 +121,7 @@ The first version of the Ontologizer has been completely redesigned to provide a
 
 &lt;p&gt;The Ontologizer should start properly with all common Windows browsers (we have tested it with IE6, IE7 and Firefox).&lt;/p&gt;
 
-&lt;h3 id=&#34;macintosh:34c4da6d4768d05e50db99357a299b5c&#34;&gt;MacIntosh&lt;/h3&gt;
+&lt;h3 id=&#34;macintosh&#34;&gt;MacIntosh&lt;/h3&gt;
 
 &lt;p&gt;The Ontologizer is built using GUI elements from the Standard Widget Toolkit (SWT) known from Eclipse. SWT has been built and test for Windows and Linux systems and the Ontologizer should work without problems on machines running Linux or modern versions of Windows. Unfortunately, the SWT for Mac OSX is not yet advanced enough, and therefore we decided to declare Ontologizer for Macintosh as unsupported at this time. Embarassed&lt;/p&gt;
 </description>
@@ -105,7 +146,7 @@ data using Gene Ontology. Most conveniently, it can be started via the Java Webs
 the Java runtime due to increased security settings. See the &lt;a href=&#34;./webstart/&#34;&gt;Webstart&lt;/a&gt;
 section for details.&lt;/p&gt;
 
-&lt;h2 id=&#34;other-downloads:b9bcf8cb73ce4a081a635ad7c0acd9dd&#34;&gt;Other Downloads&lt;/h2&gt;
+&lt;h2 id=&#34;other-downloads&#34;&gt;Other Downloads&lt;/h2&gt;
 
 &lt;p&gt;Command line: &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt;&lt;/p&gt;
 
@@ -139,7 +180,7 @@ benefit from updates and bugfixes. Once the current version of the program has b
 downloaded, the program will start essentially as quickly as a traditional desktop
 application.&lt;/p&gt;
 
-&lt;h2 id=&#34;troubles:c401aef215b0fc7a3ef212beafcd14f5&#34;&gt;Troubles&lt;/h2&gt;
+&lt;h2 id=&#34;troubles&#34;&gt;Troubles&lt;/h2&gt;
 
 &lt;p&gt;The Java may refuse to start Ontologizer using Webstart facility as the binaries
 are only self-signed. To circumvent this problem, the most easy solution is to add the
@@ -185,7 +226,7 @@ all dependencies included with the exception of SWT.&lt;/p&gt;
 &lt;p&gt;The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though. But if you want to use the command-line version, you need to download
 the &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt; file first.&lt;/p&gt;
 
-&lt;h2 id=&#34;help:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Help&lt;/h2&gt;
+&lt;h2 id=&#34;help&#34;&gt;Help&lt;/h2&gt;
 
 &lt;p&gt;Ontologizer is a Java-Application and needs to be started via the &lt;code&gt;java&lt;/code&gt; command and be invoked with a plenty of arguments. All possible command arguments along with a short description can be viewed via the &lt;code&gt;--help&lt;/code&gt; argument. E.g.&lt;/p&gt;
 
@@ -242,7 +283,7 @@ Analyze High-Throughput Biological Data Using Gene Ontology
 
 &lt;p&gt;In order to do something useful, Ontologizer must be started with several arguments (as indicated with &amp;ldquo;Required&amp;rdquo; within the output above).&lt;/p&gt;
 
-&lt;h2 id=&#34;required-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Required Arguments&lt;/h2&gt;
+&lt;h2 id=&#34;required-arguments&#34;&gt;Required Arguments&lt;/h2&gt;
 
 &lt;p&gt;First, you are required to specify the &lt;code&gt;-g&lt;/code&gt; (or &lt;code&gt;--go&lt;/code&gt;) option. This defines the path to a file which contains the GO terminology and structure. Ontologizer is able to parse files in the OBO format. Such are available directly at the GO Website from &lt;a href=&#34;http://geneontology.org/page/download-ontology&#34;&gt;http://geneontology.org/page/download-ontology&lt;/a&gt;.&lt;/p&gt;
 
@@ -254,7 +295,7 @@ Analyze High-Throughput Biological Data Using Gene Ontology
 
 &lt;p&gt;When started with these four parameters only, the output of Ontologizer&amp;rsquo;s calculation is written to a basic ascii table file into the same directory where the study files are located. The table&amp;rsquo;s filename is derived from the name of the study set in question but prepended with &amp;ldquo;table-&amp;rdquo; string.&lt;/p&gt;
 
-&lt;h2 id=&#34;optional-arguments:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Optional Arguments&lt;/h2&gt;
+&lt;h2 id=&#34;optional-arguments&#34;&gt;Optional Arguments&lt;/h2&gt;
 
 &lt;p&gt;Using the &lt;code&gt;-d&lt;/code&gt; option, you can instruct Ontologizer to create a graphical output of the results. For every study set, a file (name is prepended with &amp;ldquo;view-&amp;rdquo;) is written which can be read by the graphviz &lt;code&gt;dot&lt;/code&gt; tool to produce a viewable graphics file. In this file, terms are depicted by nodes and their hierarchical relations are depicted by edges. Because the GO DAG contains a huge amount of terms, the graph is constructed only for significant terms and their predecessors (up to the source) and those significant terms are highligthed. Which terms are considered as significant is influenced by their p-values and the significance threshold. This threshold is specified as a parameter to the -d argument. It must be a valid floating point value ranging from 0 to 0.5. For example use &lt;code&gt;-d 0.05&lt;/code&gt; to define those terms as significant whose p-value falls below 0.05.&lt;/p&gt;
 
@@ -274,7 +315,7 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 &lt;p&gt;The corresponding graphic should look something like this:
 &lt;img src=&#34;./images/Example.png&#34; alt=&#34;Dot Example&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;obtaining-graphviz:89dc0b89bd17fa3b3b6dcf3a7dd09dc1&#34;&gt;Obtaining Graphviz&lt;/h2&gt;
+&lt;h2 id=&#34;obtaining-graphviz&#34;&gt;Obtaining Graphviz&lt;/h2&gt;
 
 &lt;p&gt;Graphviz is a Open Source project which provides tools for layouting and depicting graphs. Hereby, graph references to mathematical entities which consists of nodes and edges.&lt;/p&gt;
 
@@ -296,21 +337,7 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 
 &lt;p&gt;The following sections show some solutions to some common problems revolving around the lack of uniformity of gene name nomenclature, and show examples of Ontologizer output for C. elegans, mouse, yeast and Drosophila.&lt;/p&gt;
 
-&lt;h3 id=&#34;gene-ontology-files:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Gene Ontology Files&lt;/h3&gt;
-
-&lt;p&gt;The Ontologizer requires the Gene Ontology Terms file (gene_ontology.obo), which is the file that describes individual GO terms and their relationships to one another. This file can be downloaded from the &lt;a href=&#34;http://geneontology.org/&#34;&gt;Gene Ontology homepage&lt;/a&gt;. Alternatively, the Ontologizer can automatically download the latest version if you specify the URL to this file.&lt;/p&gt;
-
-&lt;h3 id=&#34;gene-association-files:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Gene Association Files&lt;/h3&gt;
-
-&lt;p&gt;The OBO file describes only the functional hierarchy of terms and does not provide functional annotations for actual genes. For this purpose, users need to download the appropriate annotation file. These files are generally entitled gene_association.XXX, where XXX stands for the database or species (e.g., mgi for &lt;a href=&#34;http://www.informatics.jax.org/&#34;&gt;Mouse Genome Informatics&lt;/a&gt;, and sgd for &lt;a href=&#34;http://www.yeastgenome.org/&#34;&gt;Saccharomyces Genome Database&lt;/a&gt;. Association files can also be downloaded from the Gene Ontology homepage. The Ontologizer can also automatically download the latest version of the association file for a number of commonly analyzed organisms (See the tutorial within the Ontologizer application for more details).&lt;/p&gt;
-
-&lt;h3 id=&#34;data-files:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Data Files&lt;/h3&gt;
-
-&lt;p&gt;The Ontologizer produces listings of GO annotations for user supplied lists of genes or gene products. One situation in which this can be useful is for &amp;ldquo;clustering&amp;rdquo; analysis of microarray data, but there are many other potential uses. The Ontologizer assumes that each group of genes resides in its own file, and presently accepts FASTA files as well as files in which each gene is on its own line. For FASTA and plain files, the first word on a line (for FASTA files, the first word following the &amp;ldquo;&amp;gt;&amp;rdquo; sign) is taken to be the name of the gene or gene product, and anything else on the line is taken to be a description. It is easy to extend the source code to allow for other types of file formats.&lt;/p&gt;
-
-&lt;p&gt;The user should copy files representing the results of clustering into a separate directory. Note that the names of the genes or gene products need to correspond to the nomenclature used in the association file for the Ontologizer to function properly. This can be especially problematic if (for instance) EST names are present in the results of clustering. Several solutions to such problems are presented below on this web page in the form of Perl scripts that can transform files and gene names such that the Ontologizer will recognize the names.&lt;/p&gt;
-
-&lt;h3 id=&#34;preparing-data-for-the-ontologizer:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Preparing Data for the Ontologizer&lt;/h3&gt;
+&lt;h2 id=&#34;preparing-data-for-the-ontologizer&#34;&gt;Preparing Data for the Ontologizer&lt;/h2&gt;
 
 &lt;p&gt;The Ontologizer uses the gene or gene-product nomeclature as found in the various gene_association files. The Ontologizer recognizes names entered as DB_Object, DB_Object_Name, or Synonym in these files. However, in many cases, gene names will be listed in other form, such as for instance EST accession numbers or Affymetrix ids. Further details on the gene_association files can be found on the Gene Ontology website. In these cases, it will be necessary to transform your data by mapping non-standard gene ids to a form that will be recognized by the Ontologizer.&lt;/p&gt;
 
@@ -318,7 +345,7 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 
 &lt;p&gt;The following sections present sample output from the Ontologizer for several different species. In many cases, we were able to use the output files directly without further processing (For C. elegans for instance). In other cases, it was necessary to create a mapping for the names of the original files such that they would conform to those used in the gene_association files. We present some &amp;ldquo;cookbook&amp;rdquo; Perl scripts that demonstrate how to perform such transformations.&lt;/p&gt;
 
-&lt;h3 id=&#34;c-elegans:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;C. elegans&lt;/h3&gt;
+&lt;h3 id=&#34;c-elegans&#34;&gt;C. elegans&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&#34;http://www.wormbase.org/wiki/index.php/UserGuide:Nomenclature_nematode&#34;&gt;recommended nomeclature for C. elegans&lt;/a&gt; forsees that genes are given names consisting of three italicized letters, a hyphen, and an italicized Arabic number, e.g., dpy-5. However, it is still not uncommon to see cosmid names: Sequences that are predicted to be genes from sequence data alone were initially named on the basis of the sequenced cosmid, plus a number. For example, the genes predicted for the cosmid K07F5 are called K07F5.1, K07F5.2, and so on. As more becomes known, it is expected that these names will be replaced by standard three-letter names.&lt;/p&gt;
 
@@ -326,25 +353,25 @@ To perform parent-child analysis using Westphal-Young MTC on the Yeast data set 
 
 &lt;p&gt;When resources are scant, C. elegans larvae arrest as long-lived dauers under the control of insulin/IGF- and TGFbeta-related signaling pathways. The authors identified genes that show different levels of expression in a comparison of wild-type L2 or L3 larvae (non-dauer) to TGFbeta mutants at similar developmental stages undergoing dauer formation. The data shown here represent the strongly regulated (&amp;gt;2.1 fold) genes in this experiment and were taken from table 2. The population set was taken to be all C. elegans genes for which annotations were provided by Wormbase. Among other things, GO analysis revealed that a number of terms related to ribosomes were highly significantly overrepresented. The gene names in these clusters represent a mix of cosmid and standard names. The &lt;strong&gt;gene_association.wb&lt;/strong&gt; file provided by Wormbase and the cluster files with gene names were used as is. &lt;a href=&#34;https://github.com/charite/charite.github.io/blob/master/media/ontologizer/examples/yeastSampleFiles.zip?raw=true&#34;&gt;Example data&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;mus-musculus:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Mus musculus&lt;/h3&gt;
+&lt;h3 id=&#34;mus-musculus&#34;&gt;Mus musculus&lt;/h3&gt;
 
 &lt;p&gt;Mouse Genome Informatics (MGI) (Jackson Laboratories) supplies a gene_association file for M. musculus. They also provide &lt;a href=&#34;http://www.informatics.jax.org/mgihome/nomen/gene.shtml&#34;&gt;guidelines for mouse gene nomeclature&lt;/a&gt;. The gene_association.mgi file provided by MGI contain annotations based primarily on MGI accession numbers. Therefore, one way of using the Ontologizer to analyze mouse datasets that are based on NCBI accession numbers is to transform the accession numbers into the corresponding MGI accession numbers. We present a way of doing this with perl scripts using files from NCBI&amp;rsquo;s Entrez Gene (gene_info and gene2accession).&lt;/p&gt;
 
 &lt;p&gt;The perl script NCBI2MG.pl maps NCBI accession numbers via Entrez Gene ids to MGI accession numbers. The output file, NCBI2MGI.txt, can be used as a mapping file for the Ontologizer. The original accession numbers are visible (together with the full gene name, locusID, and UniGene cluster) directly after the MGI accession number. For accession numbers for which no MGI id could be identified (mainly some ESTs), just the original accession number is displayed. The corresponding original files can be &lt;a href=&#34;https://github.com/charite/charite.github.io/blob/master/media/ontologizer/examples/mouseSampleFiles.tar.gz?raw=true&#34;&gt;downloaded here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;results:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Results&lt;/h3&gt;
+&lt;h3 id=&#34;results&#34;&gt;Results&lt;/h3&gt;
 
 &lt;p&gt;The results window contains a table with one line for each gene in the population. Clicking on a line causes more information about a term to be displayed in the lower panel. A list of annotated genes/proteins is shown, and links to parent and child terms are available. By clicking on the symbol for &amp;ldquo;graph&amp;rdquo;, a graph is generated and shown in the right hand panel. Buttons for zooming in and out are provided. The table of results can be saved and the graph can be saved as a PNG file or a dot file (this is the GraphViz definition file). Note that the graphics function requires that &lt;a href=&#34;http://www.graphviz.org/&#34;&gt;GraphViz&lt;/a&gt; is installed on your computer.&lt;/p&gt;
 
-&lt;h2 id=&#34;datasets:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Datasets&lt;/h2&gt;
+&lt;h2 id=&#34;datasets&#34;&gt;Datasets&lt;/h2&gt;
 
-&lt;h3 id=&#34;datasets-for-go-analysis:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Datasets for GO Analysis&lt;/h3&gt;
+&lt;h3 id=&#34;datasets-for-go-analysis&#34;&gt;Datasets for GO Analysis&lt;/h3&gt;
 
 &lt;p&gt;A typical dataset for statistical analysis using the Ontologizer or many other GO tools will consist of a list of gene/protein names making up a study set (for instance, all differentially expressed genes in an experiment) and a longer list of gene/protein names making up the population (for instance, all genes represented on a microarray that was used to perform the experiment). It has been our experience that is is difficult to find such datasets on the web, which is a stumbling block for testing new algorithms or tools for GO analysis.&lt;/p&gt;
 
 &lt;p&gt;On this page we present an R/Bioconductor script that makes it easy to create study sets/population sets using publically available microarray datasets from NCBI&amp;rsquo;s Gene Expression Omnibus (GEO) database. It should be easy to adapt this script to analyze in house datasets derived from Affymetrix microarray hybridizations. Currently there are thousands of datasets in the GEO database, so extensive testing and comparisons of different algorithms should be possible. On this page, we explain the R script and present several datasets obtained using it.&lt;/p&gt;
 
-&lt;h3 id=&#34;software-prerequisites-and-data-sources:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;Software Prerequisites and Data Sources&lt;/h3&gt;
+&lt;h3 id=&#34;software-prerequisites-and-data-sources&#34;&gt;Software Prerequisites and Data Sources&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;R and Bioconductor&lt;/em&gt;&lt;/p&gt;
 
@@ -363,11 +390,11 @@ biocLite&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=
 
 &lt;p&gt;NCBI&amp;rsquo;s Gene Expression Omnibus (GEO) database is a repository of thousands of microarray datasets. GEO DataSets (GDS) are curated sets of GEO Sample data. A GDS record represents a collection of biologically and statistically comparable GEO Samples and forms the basis of GEO&amp;rsquo;s suite of data display and analysis tools.&lt;/p&gt;
 
-&lt;h3 id=&#34;r-bioconductor-code-for-creating-study-and-population-datasets:fffa0517dffe678899a7f6f2f71cf421&#34;&gt;R/Bioconductor Code for Creating Study and Population Datasets&lt;/h3&gt;
+&lt;h3 id=&#34;r-bioconductor-code-for-creating-study-and-population-datasets&#34;&gt;R/Bioconductor Code for Creating Study and Population Datasets&lt;/h3&gt;
 
 &lt;p&gt;The following code demonstrates how to use R/Bioconductor to download and analyze datasets from the NCBI GEO database and to create study and population sets from them.&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #75715e&#34;&gt;# A script for fetching data and creating study/population datasets&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #75715e&#34;&gt;# A script for fetching data and creating study/population datasets&lt;/span&gt;
 &lt;span style=&#34;color: #75715e&#34;&gt;# for the Ontologizer&lt;/span&gt;
 
 &lt;span style=&#34;color: #f92672&#34;&gt;library&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;Biobase&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
@@ -431,7 +458,7 @@ write.table&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;mapping&lt;s
 pop.name &lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;paste&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;population&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;platform&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;txt&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;sep&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
 write.table&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;mapping&lt;span style=&#34;color: #f8f8f2&#34;&gt;[,&lt;/span&gt;&lt;span style=&#34;color: #ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;],&lt;/span&gt;col.names&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;row.names&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;quote&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;F,&lt;/span&gt;file&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;pop.name&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -454,18 +481,18 @@ For contributing, the easiest is to fork the project and to issue pull requests 
       <guid>/impressum/</guid>
       <description>
 
-&lt;h2 id=&#34;angaben-gemäß-5-tmg:5515c6e0fd776984b9bc2d16dabbffb6&#34;&gt;Angaben gemäß § 5 TMG:&lt;/h2&gt;
+&lt;h2 id=&#34;angaben-gemäß-5-tmg&#34;&gt;Angaben gemäß § 5 TMG:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;Sebastian Bauer
 Münsterlandstr. 8
 10317 Berlin
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;kontakt:5515c6e0fd776984b9bc2d16dabbffb6&#34;&gt;Kontakt&lt;/h2&gt;
+&lt;h2 id=&#34;kontakt&#34;&gt;Kontakt&lt;/h2&gt;
 
 &lt;p&gt;Email: &lt;a href=&#34;mailto:mail@sebastianbauer.info&#34;&gt;mail@sebastianbauer.info&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;verantwortlich-für-den-inhalt-nach-55-abs-2-rstv:5515c6e0fd776984b9bc2d16dabbffb6&#34;&gt;Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:&lt;/h2&gt;
+&lt;h2 id=&#34;verantwortlich-für-den-inhalt-nach-55-abs-2-rstv&#34;&gt;Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;Sebastian Bauer
 Münsterlandstr. 8
