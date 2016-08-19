@@ -185,7 +185,7 @@ executed in modern Web browsers. Thus, unlike the traditional Ontologizer, no Ja
 installation is needed. Note however, that this is in an alpha state and thus very
 limited. Please report any findings here: &lt;a href=&#34;https://github.com/sba1/ontologizer/issues&#34;&gt;https://github.com/sba1/ontologizer/issues&lt;/a&gt;.&lt;/p&gt;
 
-&lt;iframe src=&#34;../web/index.html&#34; style=&#34;width: 100%; height: 650px; box-sizing: border-box;&#34; frameBorder=&#34;0&#34;&gt;
+&lt;iframe src=&#34;../web/index.html&#34; style=&#34;width: 100%; height: 550px; box-sizing: border-box;&#34; frameBorder=&#34;0&#34;&gt;
 The Web Ontologizer needs a browser with IFrame support.
 &lt;/iframe&gt;
 </description>
