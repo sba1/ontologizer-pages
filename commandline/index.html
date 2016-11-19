@@ -84,14 +84,40 @@
     <div class="content">
         
 
-<p>The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though. But if you want to use the command-line version, you need to download
-the <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a> file first.</p>
+<p>The command-line version of Ontologizer can be used for batch processing or pipelines. Most general users will prefer the Java WebStart version, though.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>If you want to use the command-line version, you need just need to download the <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a> file.</p>
+
+<h2 id="installation-under-debian">Installation under Debian</h2>
+
+<p>Users that run Debian or a Debian-based distribution are recommended to install the command-line version of Ontologizer
+from Ontologizer&rsquo;s Debian repository. To do so, enter:</p>
+
+<pre><code> $ su
+ $ echo deb [arch=all] https://sba1.github.io/ontologizer-deb/ unstable main &gt;/etc/apt/sources.list.d/ontologizer.list
+ $ apt-get update
+ $ apt-get install ontologizer-cli
+ $ exit
+</code></pre>
+
+<p>Note that the Debian packages offered in this repository are currently not signed. You may need to install the Debian package <code>apt-transport-https</code>
+prior these steps in order to allow downloading packages via the <code>https</code> protocol.</p>
 
 <h2 id="help">Help</h2>
 
-<p>Ontologizer is a Java-Application and needs to be started via the <code>java</code> command and be invoked with a plenty of arguments. All possible command arguments along with a short description can be viewed via the <code>--help</code> argument. E.g.</p>
+<p>Ontologizer is a Java-Application and if you downloaded the <a href="../cmdline/Ontologizer.jar">Ontologizer.jar</a> jar file, you need to start it via the <code>java</code> command.
+But if you installed it via the Debian repository, you can invoke it more conveniently via the <code>ontologizer</code> wrapper script.</p>
+
+<p>All possible command arguments along with a short description can be viewed via the <code>--help</code> argument. E.g.</p>
 
 <pre><code>$ java -jar Ontologizer.jar --help
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ ontologizer --help
 </code></pre>
 
 <p>will produce following output:</p>
