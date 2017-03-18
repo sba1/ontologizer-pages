@@ -2,116 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ontologizer</title>
-    <link>/</link>
+    <link>/index.xml</link>
     <description>Recent content on Ontologizer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Introduction</title>
-      <link>/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/intro/</guid>
-      <description>
-
-&lt;p&gt;A number of methods have been developed to analyze microarray and other high-throughput data derived from measurements of hundreds or thousands of genes or proteins. Depending on the method, the results of analysis consist of a list of many differentially regulated genes or a partitioning of many or all of the genes in the data set into clusters (groups) that putatively share some functionally relevant characteristic. Among the many uses to which the Gene Ontology (GO) has been put is to provide a summary of such lists of genes/proteins according to functional role, biochemical reaction, or location of the gene product in the cell.
-The first version of the Ontologizer has been completely redesigned to provide a versatile WebStart or desktop application for the GO term enrichment analysis whose user interface utilizes &lt;a href=&#34;http://www.eclipse.org/&#34;&gt;Eclipse&amp;rsquo;s&lt;/a&gt; Standard Widget Toolkit. It supports not only the standard approach to GO term enrichment analysis but also our parent-child method as described by Grossmann, topology based methods as described by Alexa and our new model-based approach&lt;/p&gt;
-
-&lt;p&gt;Following analysis with one of the above methods and optionally a multiple-testing correction procedure, the Ontologizer rows of terms together with their p-values or marginal probabilities, annotation counts and other information. Relevance of a term is indicated by color coding according to the sub ontology to which the term belongs, whereby the intensity of the color correlates with the maginitude of relevance.&lt;/p&gt;
-
-&lt;p&gt;Users can click on any term in the table to display properties and results related to the term such as its parents and children, its description, and a list of all genes annotated to the term in the study set. This information is presented as a hypertext in the lower panel with links to parent and child terms. The Ontologizer also provides a tightly integrated graphical display of the results using GraphViz.&lt;/p&gt;
-
-&lt;p&gt;The following pages present a brief introduction to the Gene Ontology, the standard &amp;ldquo;term-for-term&amp;rdquo; approach to statistical analysis, and the the parent child approach.&lt;/p&gt;
-
-&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
-
-&lt;p&gt;This section intends to give readers a very quick overview of the GO. The &lt;a href=&#34;http://www.geneontology.org/&#34;&gt;GO homepage&lt;/a&gt; is a great source of documentation. Readers are also refered to the original paper on GO by Ashburner and coworkers as well as a &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;amp;db=PubMed&amp;amp;dopt=Abstract&amp;amp;list_uids=16381878&#34;&gt;recent overview&lt;/a&gt; for more information.&lt;/p&gt;
-
-&lt;p&gt;The Gene Ontology (GO) has provided a dynamic, controlled vocabulary for describing gene products in any organism. GO contains three extensive subontologies describing molecular function (the biochemical activity of a gene product), biological process (the objective or biological goal to which a gene product contributes) and cellular component (the place in the cell in which the biological activity of a gene product is exerted).&lt;/p&gt;
-
-&lt;p&gt;GO contains well over over 20,000 terms, each of which has an accession number, a name, a more detailed definition, and other information relating a term to its parent terms. Individual terms are organized as a directed acyclic graph, whereby the terms form the nodes in the ontology and the arcs the relationships. More specific terms are lower in the graph and terms are related to their parent terms by &lt;em&gt;is-a&lt;/em&gt; relationships (e.g. condensed chromosome &lt;em&gt;is-a&lt;/em&gt; chromosome) or &lt;em&gt;part-of&lt;/em&gt; relationships (e.g. nucleolus is &lt;em&gt;part-of&lt;/em&gt; nucleus). In contrast to simpler hierarchical structures, one node in a directed acyclic graph may have multiple parents. For instance, the term &lt;em&gt;DNA replication&lt;/em&gt; (GO:0006260) is a child of the term &lt;em&gt;DNA replication and cell cycle&lt;/em&gt; (GO:0000067) and also of the term &lt;em&gt;S phase of mitotic cell cycle&lt;/em&gt; (GO:0000084). This allows for a more flexible, expressive and detailed description of biological functions.&lt;/p&gt;
-
-&lt;p&gt;The GO terms do not themselves describe specific genes or gene products. Rather, collaborating databases generate gene association files consisting of links between genes or gene products and GO terms. Genes and gene products are annotated at the most specific level possible, but are considered to share the attributes of all the parent nodes. Association files have been made available for m organisms, including human, mouse, yeast and Caenorhabditis elegans.&lt;/p&gt;
-
-&lt;h2 id=&#34;overrepresentation&#34;&gt;Overrepresentation&lt;/h2&gt;
-
-&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-
-&lt;p&gt;We use the designation &amp;ldquo;Term-for-Term (TFT) analysis&amp;rdquo; to refer to the standard method of performing statistical analysis for overrepresentation in GO. Please see the section on Parent-Child analysis for an explanation of this name.&lt;/p&gt;
-
-&lt;p&gt;TFT analysis is based on the following assumptions. We are generally interesting in knowing if a subset of genes from a larger population has any special characteristics. We will define the subset as our study group. This could be a set of overexpressed genes from a microarray experiment. Note that there may be several study groups, for instance, overexpressed genes and underexpressed genes. The population group would then be defined as all genes represented on the microarray. We can then ask if the frequency of a annotation to a Gene Ontology term is different for the study group compared to the overall population.&lt;/p&gt;
-
-&lt;h3 id=&#34;modified-fisher-s-exact-test&#34;&gt;Modified Fisher&amp;rsquo;s Exact Test&lt;/h3&gt;
-
-&lt;p&gt;Thus, we can imagine a binary random variable for each gene in the population with two mutual exclusive values: 1) The gene is annotated to the GO term in question or 2) The gene is not annotated to the GO term.&lt;/p&gt;
-
-&lt;p&gt;Assume the population of all genes contains M genes annotated to some term t and N genes not annotated to the term. The population thuis contains a total of M+N genes. The study set contains k genes, r of which are annotated to the term t. The hypergeometric distribution then gives the probability of sampling exactly r genes annotated term t:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;$$h_{k,N,M}(r)=\frac{\binom{M}{r}\binom{N}{k-r}}{\binom{N+M}{k}}$$&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Since we are interested in knowing the probability that a certain number of annotations to a certain GO term occured by chance (with low probabilities corresponding as usual to a high statistical significance), we actually need to calculate the chance of seeing r or more annotations in our study set:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;$$\sum_r^k h_{k,N,M}(r)$$&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This is essentially the same as the Fisher Exact Test, except that we are only testing for overrepresentation. The Fisher Exact test, in contrast, tests for either extreme (over- or underrepresentation). It has become the convention in GO analysis not to test for underrepresentation of GO terms, because the biological significance of underrepresentation is much less clear than the significance of overrepresentation.&lt;/p&gt;
-
-&lt;h3 id=&#34;parent-child-analysis&#34;&gt;Parent-Child Analysis&lt;/h3&gt;
-
-&lt;p&gt;The Parent-Child method represents a new algorithm for identifying overrepresented Gene Ontology (GO) annotations in gene sets. While the current methods treats each term independently and hence ignores the structure of the GO hierarchy, our approach takes parent-child relationships into account. Over-representation of a term is measured with respect to the presence of its parental terms in the set. This resolves the problem that the standard approach tends to falsely detect an over-representation of more specific terms below terms known to be over-represented. Our approach comes at no additional computational complexity when compared to the standard approach.&lt;/p&gt;
-
-&lt;p&gt;The parent-child method is described in detail in &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/17848398?dopt=Abstract&#34;&gt;Grossmann et al. (2007), Improved Detection of Overrepresentation of Gene-Ontology Annotations with Parent-Child Analysis&lt;/a&gt; (Available as an Open-Access Bioinformatics Article). A conference report from the RECOMB06 &lt;a href=&#34;http://dx.doi.org/10.1007/11732990_9&#34;&gt;An Improved Statistic for Detecting Over-Represented Gene Ontology Annotations in Gene Sets&lt;/a&gt;, has appeared in Springer&amp;rsquo;s Lecture Notes in Computer Science.&lt;/p&gt;
-
-&lt;h3 id=&#34;multiple-testing&#34;&gt;Multiple Testing&lt;/h3&gt;
-
-&lt;p&gt;Since in general we will test up to thousands of GO terms for overrepresentation, we need to apply some correction for multiple testing. At present, the Ontologizer uses a classic Bonferroni correction, meaning it multiplies the nominal p-values calculated as described above by the number of tests performed. This is a very conservative form of correction for multiple testing. We can limit the number of tests performed by deciding not to test GO terms that do not annotate any genes in the population (since the study group is drawn from the population, if no genes are annotated than obviously overrepresentation of the term is impossible). Additionally, if a term annotates only one gene in the population than it is apparent that testing for overrepresentation in the study group has little meaning. Note that the number of genes in the study group annotated to the term does (and should) not need to be taken into account here.&lt;/p&gt;
-
-&lt;p&gt;It is possible to perform analysis on any number of groups (clusters) of genes simultaneously. The Ontologizer does not perform multiple testing correction based on the number of clusters analysed. Depending on the question posed by the user, it may or may not to be appropriate to do so.&lt;/p&gt;
-
-&lt;p&gt;Finally, note that Gene Ontology annotations are made to the most specific term possible. All ancestors of the term are considered to be implicitly annotated. Therefore, if we are calculating the total annotations of a term, we need to count annotations to all (more specific) descendents of the term also. Note that we need to avoid introducing &amp;ldquo;extra&amp;rdquo; (duplicate) counts if there are multiple paths from a descendent term to an ancestor term, or if two distinct descendents of a term are annotated for a certain gene. A discussion of these issues is available in Robinson et al. (2004) &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/15254011?dopt=Abstract&#34;&gt;Gene-Ontology analysis reveals association of tissue-specific 5&amp;rsquo; CpG-island genes with development and embryogenesis&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer&#34;&gt;Potential Problems with the Term Browser and Help Window of the Ontologizer&lt;/h3&gt;
-
-&lt;p&gt;With some combinations of debian linux and firefox, we have noticed a problem with the Ontologizer finding the libraries needed to allow browsing of GO terms and the show the HTML format of the help system. If you notice this problem, it may help to set the variable MOZILLA_FIVE_HOME in the file /etc/environment as follows:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;MOZILLA_FIVE_HOME=/usr/lib/xulrunner and to install the latest version of the packages &amp;quot;xulrunner&amp;quot; and &amp;quot;libxul-dev&amp;quot; with apt-get or aptitude.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The Ontologizer should start properly with all common Windows browsers (we have tested it with IE6, IE7 and Firefox).&lt;/p&gt;
-
-&lt;h3 id=&#34;macintosh&#34;&gt;MacIntosh&lt;/h3&gt;
-
-&lt;p&gt;The Ontologizer is built using GUI elements from the Standard Widget Toolkit (SWT) known from Eclipse. SWT has been built and test for Windows and Linux systems and the Ontologizer should work without problems on machines running Linux or modern versions of Windows. Unfortunately, the SWT for Mac OSX is not yet advanced enough, and therefore we decided to declare Ontologizer for Macintosh as unsupported at this time. Embarassed&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Ontologizer</title>
-      <link>/home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/home/</guid>
-      <description>
-
-&lt;p&gt;Ontologizer is a tool for the statistical analysis and visualization of high-throughput biological
-data using Gene Ontology. Most conveniently, it can be started via the Java Webstart facility:&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-&lt;a href=&#34;./webstart/ontologizer.jnlp&#34;&gt;&lt;img src=&#34;./images/webstart.jpg&#34; alt=&#34;Webstart&#34; /&gt;&lt;/a&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;Note however that the Webstart facility will no longer work by default with recent versions of
-the Java runtime due to increased security settings. See the &lt;a href=&#34;./webstart/&#34;&gt;Webstart&lt;/a&gt;
-section for details.&lt;/p&gt;
-
-&lt;h2 id=&#34;other-downloads&#34;&gt;Other Downloads&lt;/h2&gt;
-
-&lt;p&gt;Command line: &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;GUI (without SWT): &lt;a href=&#34;./gui/OntologizerGui.jar&#34;&gt;OntologizerGui.jar&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Webstart</title>
@@ -424,7 +319,7 @@ suffix. The actual contents of must conform to the following structure:&lt;/p&gt
 
 &lt;p&gt;Our script makes use of two Bioconductor packages to perform the analysis. The package GEOquery automatically retrieves microarray from the GEO website, and the package limma performs a number of statistical analyses including the identification of differentially expressed genes. Depending on your setup, you may need to install these packages. There are several ways of doing this, but the easiest is probably&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #f92672&#34;&gt;source&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;http://www.bioconductor.org/biocLite.R&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;source&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;http://www.bioconductor.org/biocLite.R&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
 biocLite&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;GEOquery&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -437,7 +332,7 @@ biocLite&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=
 
 &lt;p&gt;The following code demonstrates how to use R/Bioconductor to download and analyze datasets from the NCBI GEO database and to create study and population sets from them.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #75715e&#34;&gt;# A script for fetching data and creating study/population datasets&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #75715e&#34;&gt;# A script for fetching data and creating study/population datasets&lt;/span&gt;
 &lt;span style=&#34;color: #75715e&#34;&gt;# for the Ontologizer&lt;/span&gt;
 
 &lt;span style=&#34;color: #f92672&#34;&gt;library&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;Biobase&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt;
@@ -541,6 +436,114 @@ Münsterlandstr. 8
 Münsterlandstr. 8
 10317 Berlin
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/intro/</guid>
+      <description>
+
+&lt;p&gt;A number of methods have been developed to analyze microarray and other high-throughput data derived from measurements of hundreds or thousands of genes or proteins. Depending on the method, the results of analysis consist of a list of many differentially regulated genes or a partitioning of many or all of the genes in the data set into clusters (groups) that putatively share some functionally relevant characteristic. Among the many uses to which the Gene Ontology (GO) has been put is to provide a summary of such lists of genes/proteins according to functional role, biochemical reaction, or location of the gene product in the cell.
+The first version of the Ontologizer has been completely redesigned to provide a versatile WebStart or desktop application for the GO term enrichment analysis whose user interface utilizes &lt;a href=&#34;http://www.eclipse.org/&#34;&gt;Eclipse&amp;rsquo;s&lt;/a&gt; Standard Widget Toolkit. It supports not only the standard approach to GO term enrichment analysis but also our parent-child method as described by Grossmann, topology based methods as described by Alexa and our new model-based approach&lt;/p&gt;
+
+&lt;p&gt;Following analysis with one of the above methods and optionally a multiple-testing correction procedure, the Ontologizer rows of terms together with their p-values or marginal probabilities, annotation counts and other information. Relevance of a term is indicated by color coding according to the sub ontology to which the term belongs, whereby the intensity of the color correlates with the maginitude of relevance.&lt;/p&gt;
+
+&lt;p&gt;Users can click on any term in the table to display properties and results related to the term such as its parents and children, its description, and a list of all genes annotated to the term in the study set. This information is presented as a hypertext in the lower panel with links to parent and child terms. The Ontologizer also provides a tightly integrated graphical display of the results using GraphViz.&lt;/p&gt;
+
+&lt;p&gt;The following pages present a brief introduction to the Gene Ontology, the standard &amp;ldquo;term-for-term&amp;rdquo; approach to statistical analysis, and the the parent child approach.&lt;/p&gt;
+
+&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;This section intends to give readers a very quick overview of the GO. The &lt;a href=&#34;http://www.geneontology.org/&#34;&gt;GO homepage&lt;/a&gt; is a great source of documentation. Readers are also refered to the original paper on GO by Ashburner and coworkers as well as a &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;amp;db=PubMed&amp;amp;dopt=Abstract&amp;amp;list_uids=16381878&#34;&gt;recent overview&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;The Gene Ontology (GO) has provided a dynamic, controlled vocabulary for describing gene products in any organism. GO contains three extensive subontologies describing molecular function (the biochemical activity of a gene product), biological process (the objective or biological goal to which a gene product contributes) and cellular component (the place in the cell in which the biological activity of a gene product is exerted).&lt;/p&gt;
+
+&lt;p&gt;GO contains well over over 20,000 terms, each of which has an accession number, a name, a more detailed definition, and other information relating a term to its parent terms. Individual terms are organized as a directed acyclic graph, whereby the terms form the nodes in the ontology and the arcs the relationships. More specific terms are lower in the graph and terms are related to their parent terms by &lt;em&gt;is-a&lt;/em&gt; relationships (e.g. condensed chromosome &lt;em&gt;is-a&lt;/em&gt; chromosome) or &lt;em&gt;part-of&lt;/em&gt; relationships (e.g. nucleolus is &lt;em&gt;part-of&lt;/em&gt; nucleus). In contrast to simpler hierarchical structures, one node in a directed acyclic graph may have multiple parents. For instance, the term &lt;em&gt;DNA replication&lt;/em&gt; (GO:0006260) is a child of the term &lt;em&gt;DNA replication and cell cycle&lt;/em&gt; (GO:0000067) and also of the term &lt;em&gt;S phase of mitotic cell cycle&lt;/em&gt; (GO:0000084). This allows for a more flexible, expressive and detailed description of biological functions.&lt;/p&gt;
+
+&lt;p&gt;The GO terms do not themselves describe specific genes or gene products. Rather, collaborating databases generate gene association files consisting of links between genes or gene products and GO terms. Genes and gene products are annotated at the most specific level possible, but are considered to share the attributes of all the parent nodes. Association files have been made available for m organisms, including human, mouse, yeast and Caenorhabditis elegans.&lt;/p&gt;
+
+&lt;h2 id=&#34;overrepresentation&#34;&gt;Overrepresentation&lt;/h2&gt;
+
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;We use the designation &amp;ldquo;Term-for-Term (TFT) analysis&amp;rdquo; to refer to the standard method of performing statistical analysis for overrepresentation in GO. Please see the section on Parent-Child analysis for an explanation of this name.&lt;/p&gt;
+
+&lt;p&gt;TFT analysis is based on the following assumptions. We are generally interesting in knowing if a subset of genes from a larger population has any special characteristics. We will define the subset as our study group. This could be a set of overexpressed genes from a microarray experiment. Note that there may be several study groups, for instance, overexpressed genes and underexpressed genes. The population group would then be defined as all genes represented on the microarray. We can then ask if the frequency of a annotation to a Gene Ontology term is different for the study group compared to the overall population.&lt;/p&gt;
+
+&lt;h3 id=&#34;modified-fisher-s-exact-test&#34;&gt;Modified Fisher&amp;rsquo;s Exact Test&lt;/h3&gt;
+
+&lt;p&gt;Thus, we can imagine a binary random variable for each gene in the population with two mutual exclusive values: 1) The gene is annotated to the GO term in question or 2) The gene is not annotated to the GO term.&lt;/p&gt;
+
+&lt;p&gt;Assume the population of all genes contains M genes annotated to some term t and N genes not annotated to the term. The population thuis contains a total of M+N genes. The study set contains k genes, r of which are annotated to the term t. The hypergeometric distribution then gives the probability of sampling exactly r genes annotated term t:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$$h_{k,N,M}(r)=\frac{\binom{M}{r}\binom{N}{k-r}}{\binom{N+M}{k}}$$&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since we are interested in knowing the probability that a certain number of annotations to a certain GO term occured by chance (with low probabilities corresponding as usual to a high statistical significance), we actually need to calculate the chance of seeing r or more annotations in our study set:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$$\sum_r^k h_{k,N,M}(r)$$&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is essentially the same as the Fisher Exact Test, except that we are only testing for overrepresentation. The Fisher Exact test, in contrast, tests for either extreme (over- or underrepresentation). It has become the convention in GO analysis not to test for underrepresentation of GO terms, because the biological significance of underrepresentation is much less clear than the significance of overrepresentation.&lt;/p&gt;
+
+&lt;h3 id=&#34;parent-child-analysis&#34;&gt;Parent-Child Analysis&lt;/h3&gt;
+
+&lt;p&gt;The Parent-Child method represents a new algorithm for identifying overrepresented Gene Ontology (GO) annotations in gene sets. While the current methods treats each term independently and hence ignores the structure of the GO hierarchy, our approach takes parent-child relationships into account. Over-representation of a term is measured with respect to the presence of its parental terms in the set. This resolves the problem that the standard approach tends to falsely detect an over-representation of more specific terms below terms known to be over-represented. Our approach comes at no additional computational complexity when compared to the standard approach.&lt;/p&gt;
+
+&lt;p&gt;The parent-child method is described in detail in &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/17848398?dopt=Abstract&#34;&gt;Grossmann et al. (2007), Improved Detection of Overrepresentation of Gene-Ontology Annotations with Parent-Child Analysis&lt;/a&gt; (Available as an Open-Access Bioinformatics Article). A conference report from the RECOMB06 &lt;a href=&#34;http://dx.doi.org/10.1007/11732990_9&#34;&gt;An Improved Statistic for Detecting Over-Represented Gene Ontology Annotations in Gene Sets&lt;/a&gt;, has appeared in Springer&amp;rsquo;s Lecture Notes in Computer Science.&lt;/p&gt;
+
+&lt;h3 id=&#34;multiple-testing&#34;&gt;Multiple Testing&lt;/h3&gt;
+
+&lt;p&gt;Since in general we will test up to thousands of GO terms for overrepresentation, we need to apply some correction for multiple testing. At present, the Ontologizer uses a classic Bonferroni correction, meaning it multiplies the nominal p-values calculated as described above by the number of tests performed. This is a very conservative form of correction for multiple testing. We can limit the number of tests performed by deciding not to test GO terms that do not annotate any genes in the population (since the study group is drawn from the population, if no genes are annotated than obviously overrepresentation of the term is impossible). Additionally, if a term annotates only one gene in the population than it is apparent that testing for overrepresentation in the study group has little meaning. Note that the number of genes in the study group annotated to the term does (and should) not need to be taken into account here.&lt;/p&gt;
+
+&lt;p&gt;It is possible to perform analysis on any number of groups (clusters) of genes simultaneously. The Ontologizer does not perform multiple testing correction based on the number of clusters analysed. Depending on the question posed by the user, it may or may not to be appropriate to do so.&lt;/p&gt;
+
+&lt;p&gt;Finally, note that Gene Ontology annotations are made to the most specific term possible. All ancestors of the term are considered to be implicitly annotated. Therefore, if we are calculating the total annotations of a term, we need to count annotations to all (more specific) descendents of the term also. Note that we need to avoid introducing &amp;ldquo;extra&amp;rdquo; (duplicate) counts if there are multiple paths from a descendent term to an ancestor term, or if two distinct descendents of a term are annotated for a certain gene. A discussion of these issues is available in Robinson et al. (2004) &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/15254011?dopt=Abstract&#34;&gt;Gene-Ontology analysis reveals association of tissue-specific 5&amp;rsquo; CpG-island genes with development and embryogenesis&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;potential-problems-with-the-term-browser-and-help-window-of-the-ontologizer&#34;&gt;Potential Problems with the Term Browser and Help Window of the Ontologizer&lt;/h3&gt;
+
+&lt;p&gt;With some combinations of debian linux and firefox, we have noticed a problem with the Ontologizer finding the libraries needed to allow browsing of GO terms and the show the HTML format of the help system. If you notice this problem, it may help to set the variable MOZILLA_FIVE_HOME in the file /etc/environment as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;MOZILLA_FIVE_HOME=/usr/lib/xulrunner and to install the latest version of the packages &amp;quot;xulrunner&amp;quot; and &amp;quot;libxul-dev&amp;quot; with apt-get or aptitude.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Ontologizer should start properly with all common Windows browsers (we have tested it with IE6, IE7 and Firefox).&lt;/p&gt;
+
+&lt;h3 id=&#34;macintosh&#34;&gt;MacIntosh&lt;/h3&gt;
+
+&lt;p&gt;The Ontologizer is built using GUI elements from the Standard Widget Toolkit (SWT) known from Eclipse. SWT has been built and test for Windows and Linux systems and the Ontologizer should work without problems on machines running Linux or modern versions of Windows. Unfortunately, the SWT for Mac OSX is not yet advanced enough, and therefore we decided to declare Ontologizer for Macintosh as unsupported at this time. Embarassed&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ontologizer</title>
+      <link>/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/home/</guid>
+      <description>
+
+&lt;p&gt;Ontologizer is a tool for the statistical analysis and visualization of high-throughput biological
+data using Gene Ontology. Most conveniently, it can be started via the Java Webstart facility:&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;a href=&#34;./webstart/ontologizer.jnlp&#34;&gt;&lt;img src=&#34;./images/webstart.jpg&#34; alt=&#34;Webstart&#34; /&gt;&lt;/a&gt;
+&lt;/center&gt;&lt;/p&gt;
+
+&lt;p&gt;Note however that the Webstart facility will no longer work by default with recent versions of
+the Java runtime due to increased security settings. See the &lt;a href=&#34;./webstart/&#34;&gt;Webstart&lt;/a&gt;
+section for details.&lt;/p&gt;
+
+&lt;p&gt;A preliminary Web version that does not rely on Webstart but uses modern Web standards can be
+accessed via the &lt;a href=&#34;./webontologizer/&#34;&gt;Web Ontologizer&lt;/a&gt; section.&lt;/p&gt;
+
+&lt;h2 id=&#34;other-downloads&#34;&gt;Other Downloads&lt;/h2&gt;
+
+&lt;p&gt;Command line: &lt;a href=&#34;./cmdline/Ontologizer.jar&#34;&gt;Ontologizer.jar&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;GUI (without SWT): &lt;a href=&#34;./gui/OntologizerGui.jar&#34;&gt;OntologizerGui.jar&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

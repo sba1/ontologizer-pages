@@ -30,12 +30,6 @@
             <ul class="pure-menu-list">
                 
                     
-                    <li class="pure-menu-item"><a href="../intro/" class="pure-menu-link">Introduction</a></li>
-                    
-                
-                    
-                
-                    
                     <li class="pure-menu-item"><a href="../webstart/" class="pure-menu-link">Webstart</a></li>
                     
                 
@@ -65,6 +59,16 @@
                 
                     
                     <li class="pure-menu-item"><a href="../impressum/" class="pure-menu-link">Impressum</a></li>
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../intro/" class="pure-menu-link">Introduction</a></li>
+                    
+                
+                    
+                    <li class="pure-menu-item"><a href="../" class="pure-menu-link">Ontologizer</a></li>
+                    
+                
                     
                 
 
@@ -130,7 +134,7 @@
 
 <p>Our script makes use of two Bioconductor packages to perform the analysis. The package GEOquery automatically retrieves microarray from the GEO website, and the package limma performs a number of statistical analyses including the identification of differentially expressed genes. Depending on your setup, you may need to install these packages. There are several ways of doing this, but the easiest is probably</p>
 
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">source</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;http://www.bioconductor.org/biocLite.R&quot;</span><span style="color: #f8f8f2">)</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">source</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;http://www.bioconductor.org/biocLite.R&quot;</span><span style="color: #f8f8f2">)</span>
 biocLite<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;GEOquery&quot;</span><span style="color: #f8f8f2">)</span>
 </pre></div>
 
@@ -143,7 +147,7 @@ biocLite<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;
 
 <p>The following code demonstrates how to use R/Bioconductor to download and analyze datasets from the NCBI GEO database and to create study and population sets from them.</p>
 
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e"># A script for fetching data and creating study/population datasets</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># A script for fetching data and creating study/population datasets</span>
 <span style="color: #75715e"># for the Ontologizer</span>
 
 <span style="color: #f92672">library</span><span style="color: #f8f8f2">(</span>Biobase<span style="color: #f8f8f2">)</span>
