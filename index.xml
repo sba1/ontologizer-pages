@@ -198,17 +198,26 @@ The Web Ontologizer needs a browser with IFrame support.
 &lt;h2 id=&#34;installation-under-debian&#34;&gt;Installation under Debian&lt;/h2&gt;
 
 &lt;p&gt;Users that run Debian or a Debian-based distribution are recommended to install the command-line version of Ontologizer
-from Ontologizer&amp;rsquo;s Debian repository. To do so, enter:&lt;/p&gt;
+from Ontologizer&amp;rsquo;s Debian repository hosted at Bintray. To do so, first import Bintray&amp;rsquo;s public key:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; $ su
- $ echo deb [arch=all] https://sba1.github.io/ontologizer-deb/ unstable main &amp;gt;/etc/apt/sources.list.d/ontologizer.list
+ $ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then add the Ontologizer repository to your &lt;code&gt;sources.list&lt;/code&gt; file and update the package database like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ echo deb [arch=all] https://dl.bintray.com/ontologizer/deb unstable main &amp;gt;&amp;gt;/etc/apt/sources.list.d/ontologizer.list
  $ apt-get update
- $ apt-get install ontologizer-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You are now ready to install Ontologizer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ apt-get install ontologizer-cli
  $ exit
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note that the Debian packages offered in this repository are currently not signed. You may need to install the Debian package &lt;code&gt;apt-transport-https&lt;/code&gt;
-prior these steps in order to allow downloading packages via the &lt;code&gt;https&lt;/code&gt; protocol.&lt;/p&gt;
+&lt;p&gt;You may need to install the Debian package &lt;code&gt;apt-transport-https&lt;/code&gt; prior these steps in order to allow downloading packages
+via the &lt;code&gt;https&lt;/code&gt; protocol.&lt;/p&gt;
 
 &lt;h2 id=&#34;help&#34;&gt;Help&lt;/h2&gt;
 

@@ -5,7 +5,7 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
 <link rel="stylesheet" href="../css/layouts/side-menu.css">
 <link rel="stylesheet" href="../css/code.css">
 
@@ -93,17 +93,26 @@
 <h2 id="installation-under-debian">Installation under Debian</h2>
 
 <p>Users that run Debian or a Debian-based distribution are recommended to install the command-line version of Ontologizer
-from Ontologizer&rsquo;s Debian repository. To do so, enter:</p>
+from Ontologizer&rsquo;s Debian repository hosted at Bintray. To do so, first import Bintray&rsquo;s public key:</p>
 
 <pre><code> $ su
- $ echo deb [arch=all] https://sba1.github.io/ontologizer-deb/ unstable main &gt;/etc/apt/sources.list.d/ontologizer.list
+ $ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+</code></pre>
+
+<p>Then add the Ontologizer repository to your <code>sources.list</code> file and update the package database like this:</p>
+
+<pre><code> $ echo deb [arch=all] https://dl.bintray.com/ontologizer/deb unstable main &gt;&gt;/etc/apt/sources.list.d/ontologizer.list
  $ apt-get update
- $ apt-get install ontologizer-cli
+</code></pre>
+
+<p>You are now ready to install Ontologizer:</p>
+
+<pre><code> $ apt-get install ontologizer-cli
  $ exit
 </code></pre>
 
-<p>Note that the Debian packages offered in this repository are currently not signed. You may need to install the Debian package <code>apt-transport-https</code>
-prior these steps in order to allow downloading packages via the <code>https</code> protocol.</p>
+<p>You may need to install the Debian package <code>apt-transport-https</code> prior these steps in order to allow downloading packages
+via the <code>https</code> protocol.</p>
 
 <h2 id="help">Help</h2>
 
